@@ -6,18 +6,23 @@ class Test{
     }
 
     tests(){
-        var recursion = new Recursion()
-        var i=0;
-        var j=1;
-        var s=0;
-        var n=1000;
+        this._pinchSet()
+    }
+    _pinchSet(){
+
         var setStr = "abcdefghijklmnopqrstuvwxyz"
         var setArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         
-        //The test cases should actually use these things in a useful way to complete some task
-        //otherwise the test cases are not secure
-        recursion.reverseIterJSlice(setStr, i, setStr.length)
-        recursion.reverseIterJSlice(setArr, i, setArr.length)
+        var pinchSet = this.pinchSet(setArr)
+        console.log(pinchSet)
+        
     }
+
+    pinchSet(set){
+        var i=0;
+        var recursion = new Recursion()
+        recursion.reverseIterJSlice(set, i, set.length)
+    }
+    
 
 }
