@@ -284,26 +284,16 @@ export class Recursion{
         return array
     }
 
-    paths(tree, path=[], gArr=[], n=0){
+    paths(tree, path=[], _paths=[]){
         if(!Object.keys(tree).length){
-            gArr.push(path[0])
+            _paths.push(path)
             return
         }else{
-            if(!n){
-                for(var i = 0; i<Object.keys(tree).length; i++){
-                    var p = Object.assign({}, path);
-                    p[Object.keys(tree)[i]]= Object.assign({}, tree[Object.keys(tree)[i]])
-                    this.paths(tree[Object.keys(tree)[i]], [p, p[Object.keys(tree)[i]]], gArr, n+1)
-                }
-            }else{
-                //the updated path becomes the tree needed for the operation
-                for(var i = 0; i<Object.keys(tree).length; i++){
-                    var p = Object.assign({}, path[1]);
-                    p[Object.keys(tree)[i]] = Object.assign({}, tree[Object.keys(tree)[i]])
-                    this.paths(tree[Object.keys(tree)[i]], [p, p[Object.keys(tree)[i]]], gArr, n+1)
-                }
+            for(var i = 0; i<Object.keys(tree).length; i++){
+                var _path=[].concat(path).concat(Object.keys(tree)[i])
+                this.paths(tree[Object.keys(tree)[i]], _path, _paths)
             }
         }
-        return
+        return _paths
     }    
 }
