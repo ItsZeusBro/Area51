@@ -1,6 +1,6 @@
 //A set of tools for making recursion more useful by anticipating what it will need
 
-class Recursion{
+export class Recursion{
 
     constructor(transformation){
 
@@ -267,19 +267,3 @@ class Recursion{
     }
 }
 
-var recursion = new Recursion()
-var i=0;
-var j=1;
-var s=0;
-var n=1000;
-var setStr = "abcdefghijklmnopqrstuvwxyz"
-var setArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-
-// console.log(recursion.iterIJSliceRotateSwap("abcdefghijklmnopqrstuvwxyz", i, j, s, 1, n))
-// console.log(recursion.iterIJSliceRotateSwap(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], i, j, s, 1, n))
-
-console.log(recursion.reverseIterJSlice(setStr, i, setStr.length))
-console.log(recursion.reverseIterJSlice(setArr, i, setArr.length))
-
-// console.log(recursion.rotate("abcdefghijklmnopqrstuvwxyz", -1))
-// console.log(recursion.rotate(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], -1))
