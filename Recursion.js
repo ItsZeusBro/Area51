@@ -1,9 +1,4 @@
-//There are only so many recursive patterns to choose from
-//There are only so many different primitive object patterns to choose from (to construct or destructure)
-//Most problems involve an iterator on the length of some structure
-//Some involve a permutative approach
-//as opposed to coming with custom solutions in an arbitrary way, we can limit the number of ways in which
-//you can generate the solution, and use a general set of tools to do it the same way every time
+//A set of tools for making recursion more useful by anticipating what it will need
 
 class Recursion{
 
@@ -61,7 +56,7 @@ class Recursion{
         }
         slice = set.slice(i, j)
         
-        if(slice.length){array.push(slice)}
+        array.push(slice)
 
         set = this.rotate(set, r)
         set = this.swap(set, i, s)
@@ -83,7 +78,7 @@ class Recursion{
         }
         slice = set.slice(i, j)
 
-        if(slice.length){array.push(slice)}
+        array.push(slice)
 
         set = this.rotate(set, r)
         set = this.swap(set, i, s)
@@ -106,7 +101,7 @@ class Recursion{
         }
         slice = set.slice(i, j)
 
-        if(slice.length){array.push(slice)}
+        array.push(slice)
 
         set = this.rotate(set, r)
         set = this.swap(set, i, s)
@@ -119,10 +114,6 @@ class Recursion{
     }
 
     iterJSliceRotate(set, i=0, j=1, r=1, n=set.length){
-        if(j==set.length){
-            j=j-i;
-            i=0;
-        }
         if(n==0){return}
         var slice;
         if(Array.isArray(set)){
@@ -130,7 +121,7 @@ class Recursion{
         }
         slice = set.slice(i, j)
 
-        if(slice.length){array.push(slice)}
+        array.push(slice)
 
         set = this.rotate(set, r)
         j++;
@@ -139,11 +130,42 @@ class Recursion{
         return array
     }
 
-    iterIJSliceRotate(set, i=0, j=1, r=1, n=set.length){
+
+    iterJSlice(set, i=0, j=1, array=[]){
         if(j==set.length){
-            j=j-i;
-            i=0;
+            return
         }
+        var slice;
+        if(Array.isArray(set)){
+            set = set.join("")
+        }
+        slice = set.slice(i, j)
+
+        array.push(slice)
+
+        j++;
+        this.iterJSlice(set, i, j, array)
+        return array
+    }
+
+    reverseIterJSlice(set, i=0, j=1, array=[]){
+        if(j==0){
+            return
+        }
+        var slice;
+        if(Array.isArray(set)){
+            set = set.join("")
+        }
+        slice = set.slice(i, j)
+
+        array.push(slice)
+
+        j--;
+        this.reverseIterJSlice(set, i, j, array)
+        return array
+    }
+
+    iterIJSliceRotate(set, i=0, j=1, r=1, n=set.length){
         if(n==0){return}
         var slice;
         if(Array.isArray(set)){
@@ -151,7 +173,7 @@ class Recursion{
         }
         slice = set.slice(i, j)
 
-        if(slice.length){array.push(slice)}
+        array.push(slice)
 
         set = this.rotate(set, r)
         i++
@@ -161,10 +183,7 @@ class Recursion{
         return array
     }
 
-    iterJSlice(set, i=0, j=1, n=set.length, array=[]){
-        if(j==set.length){
-            return
-        }
+    reverseIterIJSliceRotate(set, i=0, j=1, r=1, n=set.length){
         if(n==0){return}
         var slice;
         if(Array.isArray(set)){
@@ -172,30 +191,13 @@ class Recursion{
         }
         slice = set.slice(i, j)
 
-        if(slice.length){array.push(slice)}
+        array.push(slice)
 
-        j++;
-        n--;
-        this.iterJSlice(set, i, j, n, array)
-        return array
-    }
-
-    reverseIterJSlice(set, i=0, j=1, n=set.length, array=[]){
-        if(j==0){
-            return
-        }
-        if(n==0){return}
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-
-        if(slice.length){array.push(slice)}
-
+        set = this.rotate(set, r)
+        i--;
         j--;
         n--;
-        this.reverseIterJSlice(set, i, j, n, array)
+        this.iterIJSliceRotate(set, i, j, r, n, array)
         return array
     }
 
