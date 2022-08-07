@@ -284,16 +284,24 @@ export class Recursion{
         return array
     }
 
-    paths(tree, path=[], _paths=[]){
+    //this needs a recursive key pattern and a payload key pattern
+    recursivePaths(tree, path=[], _paths=[], payloadKeys=['payload']){
         if(!Object.keys(tree).length){
             _paths.push(path)
             return
         }else{
             for(var i = 0; i<Object.keys(tree).length; i++){
-                var _path=[].concat(path).concat(Object.keys(tree)[i])
-                this.paths(tree[Object.keys(tree)[i]], _path, _paths)
+                //console.log(!payloadKeys.includes(Object.keys(tree)[i]), Object.keys(tree)[i])
+                if(!payloadKeys.includes(Object.keys(tree)[i])){
+                    var _path=[].concat(path).concat(Object.keys(tree)[i])
+                    this.recursivePaths(tree[Object.keys(tree)[i]], _path, _paths)
+                }
             }
         }
         return _paths
     }    
+
+    getPath(tree, keyPath){
+        //creates a new object from the key path
+    }
 }

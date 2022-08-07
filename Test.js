@@ -7,98 +7,161 @@ class Test{
         this.setArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         this.setStr = "abcdefghijklmnopqrstuvwxyz"
         this.tree = {
+            'payload':{
+                'some':'payload_0'
+            },
             'a':{
+                'payload':{
+                    'some':'payload_a'
+                },
                 '1':{
+                    'payload':{
+                        'some':'payload_1'
+                    },
                     'd':{
-
+                        'payload':{
+                            'some':'payload_d'
+                        }
                     },
                     'e':{
-
+                        'payload':{
+                            'some':'payload_e'
+                        }
                     },
                     'f':{
-
+                        'payload':{
+                            'some':'payload_f'
+                        }
                     }
                 },
                 '2':{
+                    'payload':{
+                        'some':'payload_2'
+                    },
                     'g':{
-
+                        'payload':{
+                            'some':'payload_g'
+                        }
                     },
                     'h':{
-
+                        'payload':{
+                            'some':'payload_h'
+                        }
                     },
                     'i':{
-                        
+                        'payload':{
+                            'some':'payload_i'
+                        }
                     }
                 },
                 '3':{
+                    'payload':{
+                        'some':'payload_3'
+                    },
                     'j':{
-
+                        'payload':{
+                            'some':'payload_j'
+                        }
                     },
                     'k':{
-
+                        'payload':{
+                            'some':'payload_k'
+                        }
                     },
                     'l':{
-                        
+                        'payload':{
+                            'some':'payload_l'
+                        }
                     }
                 }
             }, 
             'b':{
                 '4':{
                     'm':{
-
+                        'payload':{
+                            'some':'payload_m'
+                        }
                     },
                     'n':{
-
+                        'payload':{
+                            'some':'payload_n'
+                        }
                     },
                     'o':{
-
+                        'payload':{
+                            'some':'payload_o'
+                        }
                     }
                 },
                 '5':{
                     'p':{
-
+                        'payload':{
+                            'some':'payload_p'
+                        }
                     },
                     'q':{
-
+                        'payload':{
+                            'some':'payload_q'
+                        }
                     },
                     'r':{
-                        
+                        'payload':{
+                            'some':'payload_r'
+                        }
                     }
                 },
                 '6':{
                     's':{
-
+                        'payload':{
+                            'some':'payload_s'
+                        }
                     },
                     't':{
-
+                        'payload':{
+                            'some':'payload_t'
+                        }
                     },
                     'u':{
-                        
+                        'payload':{
+                            'some':'payload_u'
+                        }
                     }
                 }
             },
             'c':{
                 '7':{
                     'v':{
-
+                        'payload':{
+                            'some':'payload_v'
+                        }
                     },
                     'w':{
-
+                        'payload':{
+                            'some':'payload_w'
+                        }
                     },
                     'x':{
-
+                        'payload':{
+                            'some':'payload_x'
+                        }
                     }
                 },
                 '8':{
                     'y':{
-
+                        'payload':{
+                            'some':'payload_y'
+                        }
                     },
                     'z':{
-
+                        'payload':{
+                            'some':'payload_z'
+                        }
                     }
                 },
                 '9':{
-
+                    'payload':{
+                        'some':'payload_9'
+                    }
                 }
             }
             
@@ -112,7 +175,7 @@ class Test{
         this.inputOutput(5)
         this._experiments()
         this._iterables()
-        this._paths()
+        this._recursivePaths()
 
     }
     inputOutput(x){
@@ -255,13 +318,13 @@ class Test{
         var recursion = new Recursion()
         return recursion.iterables(set)
     }
-    _paths(){
-        this.log(this.paths(this.tree))
+    _recursivePaths(){
+        this.log(this.recursivePaths(this.tree))
     }
 
-    paths(tree){
+    recursivePaths(tree){
         var recursion = new Recursion()
-        var arr=recursion.paths(tree)
+        var arr=recursion.recursivePaths(tree)
         return arr
     }
     _orderedPinchSet(){
