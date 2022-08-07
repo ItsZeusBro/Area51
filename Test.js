@@ -1,10 +1,108 @@
 import { Recursion } from "./Recursion.js";
 import * as assert from "node:assert"
+import * as util from "node:util"
 
 class Test{
     constructor(){
         this.setArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         this.setStr = "abcdefghijklmnopqrstuvwxyz"
+        this.tree = {
+            'a':{
+                '1':{
+                    'd':{
+
+                    },
+                    'e':{
+
+                    },
+                    'f':{
+
+                    }
+                },
+                '2':{
+                    'g':{
+
+                    },
+                    'h':{
+
+                    },
+                    'i':{
+                        
+                    }
+                },
+                '3':{
+                    'j':{
+
+                    },
+                    'k':{
+
+                    },
+                    'l':{
+                        
+                    }
+                }
+            }, 
+            'b':{
+                '4':{
+                    'm':{
+
+                    },
+                    'n':{
+
+                    },
+                    'o':{
+
+                    }
+                },
+                '5':{
+                    'p':{
+
+                    },
+                    'q':{
+
+                    },
+                    'r':{
+                        
+                    }
+                },
+                '6':{
+                    's':{
+
+                    },
+                    't':{
+
+                    },
+                    'u':{
+                        
+                    }
+                }
+            },
+            'c':{
+                '7':{
+                    'v':{
+
+                    },
+                    'w':{
+
+                    },
+                    'x':{
+
+                    }
+                },
+                '8':{
+                    'y':{
+
+                    },
+                    'z':{
+
+                    }
+                },
+                '9':{
+
+                }
+            }
+            
+        }
         this.tests()
     }
 
@@ -14,6 +112,7 @@ class Test{
         this.inputOutput(5)
         this._experiments()
         this._iterables()
+        this._paths()
 
     }
     inputOutput(x){
@@ -156,7 +255,14 @@ class Test{
         var recursion = new Recursion()
         return recursion.iterables(set)
     }
+    _paths(){
+        this.log(this.paths(this.tree))
+    }
 
+    paths(tree){
+        var recursion = new Recursion()
+        return recursion.paths(tree)
+    }
     _orderedPinchSet(){
 
         var pinchSet = this.orderedPinchSet(this.setArr)
@@ -181,7 +287,11 @@ class Test{
         return recursion.iterJSlice(set, i, j)
     }
 
-
+    log(obj){
+        if(obj){
+            console.log(util.inspect(obj, false, null, true))
+        }
+      }
 }
 
 new Test()

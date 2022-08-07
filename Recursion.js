@@ -283,4 +283,8 @@ export class Recursion{
         }
         return array
     }
+
+    paths(tree, gArr=[], n=0){
+        
+    }
 }
