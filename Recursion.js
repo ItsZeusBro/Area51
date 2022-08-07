@@ -297,7 +297,7 @@ export class Recursion{
             return
         }else{
             for(var i = 0; i<rKeys.length; i++){
-                var _path=[].concat(path).concat(rKeys[i])
+                var _path=[].concat(path).concat({[rKeys[i]]: tree[rKeys[i]]['payload']})
                 this.paths(tree[rKeys[i]], _path, _paths)
             }
         }
