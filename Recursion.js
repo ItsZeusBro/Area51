@@ -132,7 +132,7 @@ export class Recursion{
 
 
     iterJSlice(set, i=0, j=1, array=[]){
-        if(j==set.length){
+        if(j==set.length+1){
             return
         }
         var slice;

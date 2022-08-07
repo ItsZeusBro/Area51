@@ -12,6 +12,7 @@
   },
   "author": "Hassan Amad",
   "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/ItsZeusBro/Recursion/issues"
   },
