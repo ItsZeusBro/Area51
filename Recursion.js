@@ -113,7 +113,7 @@ class Recursion{
         return array
     }
 
-    iterJSliceRotate(set, i=0, j=1, r=1, n=set.length){
+    iterJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
         if(n==0){return}
         var slice;
         if(Array.isArray(set)){
@@ -165,7 +165,7 @@ class Recursion{
         return array
     }
 
-    iterIJSliceRotate(set, i=0, j=1, r=1, n=set.length){
+    iterIJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
         if(n==0){return}
         var slice;
         if(Array.isArray(set)){
@@ -183,7 +183,7 @@ class Recursion{
         return array
     }
 
-    reverseIterIJSliceRotate(set, i=0, j=1, r=1, n=set.length){
+    reverseIterIJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
         if(n==0){return}
         var slice;
         if(Array.isArray(set)){
@@ -278,8 +278,8 @@ var setArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q
 // console.log(recursion.iterIJSliceRotateSwap("abcdefghijklmnopqrstuvwxyz", i, j, s, 1, n))
 // console.log(recursion.iterIJSliceRotateSwap(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], i, j, s, 1, n))
 
-console.log(recursion.reverseIterJSlice(setStr, i, setStr.length, n))
-console.log(recursion.reverseIterJSlice(setArr, i, setArr.length, n))
+console.log(recursion.reverseIterJSlice(setStr, i, setStr.length))
+console.log(recursion.reverseIterJSlice(setArr, i, setArr.length))
 
 // console.log(recursion.rotate("abcdefghijklmnopqrstuvwxyz", -1))
 // console.log(recursion.rotate(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], -1))
