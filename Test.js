@@ -22,59 +22,19 @@ class Test{
                         'payload':{
                             '1a2a3a':'1a2a3a'
                         }
-                    },
-                    '1a2a3b':{
-                        'payload':{
-                            '1a2a3b':'1a2a3b'
-                        }
-                    },
-                    '1a2a3c':{
-                        'payload':{
-                            '1a2a3c':'1a2a3c'
-                        }
                     }
                 },
                 '1a2b':{
                     'payload':{
-                        '1a2b':'pay1a2bload_2'
+                        '1a2b':'1a2b'
                     },
                     '1a2b3a':{
                         'payload':{
                             '1a2b3a':'1a2b3a'
                         }
-                    },
-                    '1a2b3b':{
-                        'payload':{
-                            '1a2b3b':'1a2b3b'
-                        }
-                    },
-                    '1a2b3c':{
-                        'payload':{
-                            '1a2b3c':'1a2b3c'
-                        }
-                    }
-                },
-                '1a2c':{
-                    'payload':{
-                        '1a2c':'1a2c'
-                    },
-                    '1a2c3a':{
-                        'payload':{
-                            '1a2c3a':'1a2c3a'
-                        }
-                    },
-                    '1a2c3b':{
-                        'payload':{
-                            '1a2c3b':'1a2c3b'
-                        }
-                    },
-                    '1a2c3c':{
-                        'payload':{
-                            '1a2c3c':'1a2c3c'
-                        }
                     }
                 }
-            }, 
+            },
             '1b':{
                 'payload':{
                     '1b':'1b'
@@ -87,156 +47,54 @@ class Test{
                         'payload':{
                             '1b2a3a':'1b2a3a'
                         }
-                    },
-                    '1b2a3b':{
-                        'payload':{
-                            '1b2a3b':'1b2a3b'
-                        }
-                    },
-                    '1b2a3c':{
-                        'payload':{
-                            '1b2a3c':'1b2a3c'
-                        }
                     }
                 },
-                '1b2b':{
-                    'payload':{
-                        '1b2b':'1b2b'
-                    },
-                    '1b2b3a':{
-                        'payload':{
-                            '1b2b3a':'1b2b3a'
-                        }
-                    },
-                    '1b2b3b':{
-                        'payload':{
-                            '1b2b3b':'1b2b3b'
-                        }
-                    },
-                    '1b2b3c':{
-                        'payload':{
-                            '1b2b3c':'1b2b3c'
-                        }
-                    }
-                },
-                '1b2c':{
-                    'payload':{
-                        '1b2c':'1b2c'
-                    },
-                    '1b2c3a':{
-                        'payload':{
-                            '1b2c3a':'1b2c3a'
-                        }
-                    },
-                    '1b2c3b':{
-                        'payload':{
-                            '1b2c3b':'1b2c3b'
-                        }
-                    },
-                    '1b2c3c':{
-                        'payload':{
-                            '1b2c3c':'1b2c3c'
-                        }
-                    }
-                }
-            },
-            '1c':{
-                'payload':{
-                    '1c':'1c'
-                },
-                '1c2a':{
-                    'payload':{
-                        '1c2a':'1c2a'
-                    },
-                    '1c2a3a':{
-                        'payload':{
-                            '1c2a3a':'1c2a3a'
-                        }
-                    },
-                    '1c2a3b':{
-                        'payload':{
-                            '1c2a3b':'1c2a3b'
-                        }
-                    },
-                    '1c2a3c':{
-                        'payload':{
-                            '1c2a3c':'1c2a3c'
-                        }
-                    }
-                },
-                '1c2b':{
-                    'payload':{
-                        '1c2b':'1c2b'
-                    },
-                    '1c2b3a':{
-                        'payload':{
-                            '1c2b3a':'1c2b3a'
-                        }
-                    },
-                    '1c2b3b':{
-                        'payload':{
-                            '1c2b3b':'1c2b3b'
-                        }
-                    }
-                },
-                '1c2c':[   
-                        {
-                            '1c2c3a':[
-                                {
-                                    '1c2c3a4a':{
-                                        'payload':{
-                                            '1c2c3a4a':'1c2c3a4a'
-                                        }
+                '1b2b':[   
+                    {
+                        '1b2b3a':[
+                            {
+                                '1b2b3a4a':{
+                                    'payload':{
+                                        '1b2b3a4a':'1b2b3a4a'
                                     }
-                                },
+                                }
+                            },
+                            {
+                                '1b2b3a4b':{
+                                    'payload':{
+                                        '1b2b3a4b':'1b2b3a4b'
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        '1b2b3b':{
+                            'payload':{
+                                '1b2b3b':'1b2b3b'
+                            },
+                            '1b2b3b4a':{
+                                'payload':{
+                                    '1b2b3b4a':'1b2b3b4a'
+                                }
+                            },
+                            '1b2b3b4b':{
+                                'payload':{
+                                    '1b2b3b4b':'1b2b3b4b'
+                                }
+                            },
+                            '1b2b3b4c':[
                                 {
-                                    '1c2c3a4b':{
+                                    '1b2b3b4c5a':{
                                         'payload':{
-                                            '1c2c3a4b':'1c2c3a4b'
+                                            '1b2b3b4c5a':'1b2b3b4c5a'
                                         }
                                     }
                                 }
                             ]
-                        },
-                        {
-                            '1c2c3b':{
-                                'payload':{
-                                    '1c2c3b':'1c2c3b'
-                                }
-                            }
-                        },
-                        {
-                            '1c2c3c':{
-                                'payload':{
-                                    '1c2c3c':'1c2c3c'
-                                },
-                                '1c2c3c4a':{
-                                    'payload':{
-                                        '1c2c3c4a':'1c2c3c4a'
-                                    }
-                                },
-                                '1c2c3c4b':{
-                                    'payload':{
-                                        '1c2c3c4b':'1c2c3c4b'
-                                    }
-                                },
-                                '1c2c3c4c':[
-                                    {
-                                        '1c2c3c4c5a':{
-                                            'payload':{
-                                                '1c2c3c4c5a':'1c2c3c4c5a'
-                                            }
-                                        }
-
-                                    }
-
-                                ]
-
-                                
-                            }
                         }
-
-                    ]
+                    }
+                ]
             }
         }
             
