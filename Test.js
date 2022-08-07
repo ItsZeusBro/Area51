@@ -261,7 +261,9 @@ class Test{
 
     paths(tree){
         var recursion = new Recursion()
-        return recursion.paths(tree)
+        var arr=[]
+        recursion.paths(tree, {}, arr)
+        return arr
     }
     _orderedPinchSet(){
 

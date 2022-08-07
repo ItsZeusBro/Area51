@@ -284,36 +284,26 @@ export class Recursion{
         return array
     }
 
-    paths(tree, path={}, gArr=[], n=0){
+    paths(tree, path=[], gArr=[], n=0){
         if(!Object.keys(tree).length){
-            return path
+            gArr.push(path[0])
+            return
         }else{
             if(!n){
                 for(var i = 0; i<Object.keys(tree).length; i++){
-                    var p = {}
-                    this.fillPath(Object.keys(tree)[i], p)
-                    gArr.push(this.paths(tree[Object.keys(tree)[i]], p, [], n+1))
-                }
-                return gArr
-            }else{
-                for(var i=0; i<Object.keys(tree).length; i++){
                     var p = Object.assign({}, path);
-                    this.fillPath(Object.keys(tree)[i], p)
-                    this.paths(tree[Object.keys(tree)[i]], p, [], n+1)
+                    p[Object.keys(tree)[i]]= Object.assign({}, tree[Object.keys(tree)[i]])
+                    this.paths(tree[Object.keys(tree)[i]], [p, p[Object.keys(tree)[i]]], gArr, n+1)
                 }
-
+            }else{
+                //the updated path becomes the tree needed for the operation
+                for(var i = 0; i<Object.keys(tree).length; i++){
+                    var p = Object.assign({}, path[1]);
+                    p[Object.keys(tree)[i]] = Object.assign({}, tree[Object.keys(tree)[i]])
+                    this.paths(tree[Object.keys(tree)[i]], [p, p[Object.keys(tree)[i]]], gArr, n+1)
+                }
             }
         }
-        return p
-    }
-
-    fillPath(key, path){
-        if(!Object.keys(path).length){
-            path[key]={}
-            return
-        }
-        this.fillPath(key, path[Object.keys(path)[0]])
-        return path
-    }
-    
+        return
+    }    
 }
