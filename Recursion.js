@@ -63,6 +63,7 @@ export class Recursion{
         j++;
         n--;
         this.iterJSliceRotateSwap(set, i, j, r, s, n, array)
+        if(!array){return []}
         return array
     }
 
@@ -86,6 +87,7 @@ export class Recursion{
         j++;
         n--;
         this.iterIJSliceRotateSwap(set, i, j, r, s, n, array)
+        if(!array){return []}
         return array
     }
 
@@ -110,6 +112,7 @@ export class Recursion{
         s++;
         n--;
         this.iterIJSSliceRotateSwap(set, i, j, r, s, n, array)
+        if(!array){return []}
         return array
     }
 
@@ -127,6 +130,7 @@ export class Recursion{
         j++;
         n--;
         this.iterJSliceRotate(set, i, j, r, n, array)
+        if(!array){return []}
         return array
     }
 
@@ -145,6 +149,7 @@ export class Recursion{
 
         j++;
         this.iterJSlice(set, i, j, array)
+        if(!array){return []}
         return array
     }
 
@@ -162,6 +167,7 @@ export class Recursion{
 
         j--;
         this.reverseIterJSlice(set, i, j, array)
+        if(!array){return []}
         return array
     }
 
@@ -180,6 +186,7 @@ export class Recursion{
         j++;
         n--;
         this.iterIJSliceRotate(set, i, j, r, n, array)
+        if(!array){return []}
         return array
     }
 
@@ -198,6 +205,7 @@ export class Recursion{
         j--;
         n--;
         this.iterIJSliceRotate(set, i, j, r, n, array)
+        if(!array){return []}
         return array
     }
 
@@ -210,12 +218,14 @@ export class Recursion{
             const tmp = b[i]
             b[i] = b[j]
             b[j] = tmp
+            if(!b){return []}
             return b
         }else if(typeof a === 'string'){
             var b = a.slice().split("")
             const tmp = b[i]
             b[i] = b[j]
             b[j] = tmp
+            if(!b){return []}
             return b.join("")
         }else{
             throw Error("swap expects string or array")
@@ -250,6 +260,7 @@ export class Recursion{
                     str = str.slice(1)+char
                 }
             }
+            if(!str){return []}
             return str
         }else if(n<0){
             for(var i=n; i!=0; i++){
@@ -262,6 +273,7 @@ export class Recursion{
                     str = str.slice(-1)+chars
                 }
             }
+            if(!str){return []}
             return str
         }
     }

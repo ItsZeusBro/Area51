@@ -22,12 +22,16 @@ class Test{
               this.every((value, index) => value === arr2[index])
             );
           };
+
         var recursion = new Recursion()
+
         for(var i=0; i<10; i++){
+            console.log('rotate', this.setArr, i)
             assert.equal(
                 recursion.rotate(this.setArr,  i).equals(recursion.rotate(this.setStr, i)),
                 true  
             )
+
             if(i){
                 assert.equal(
                     recursion.rotate(this.setArr,  -i).equals(recursion.rotate(this.setStr, -i)),
@@ -37,7 +41,7 @@ class Test{
 
 
             for(var j=0; j<10; j++){
-                
+                console.log('swap', this.setArr, i, j)
                 assert.equal(
                         recursion.swap(this.setArr,  i, j)
                     .equals(
@@ -46,6 +50,7 @@ class Test{
                     true    
                 )
 
+                console.log('iterJSlice', this.setArr, i, j)
                 assert.equal(
                         recursion.iterJSlice(this.setArr,  i, j)
                     .equals(
@@ -54,6 +59,7 @@ class Test{
                     true   
                 )
 
+                console.log('reverseIterJSlice', this.setArr, i, j)
                 assert.equal(
                         recursion.reverseIterJSlice(this.setArr,  i, j)
                     .equals(
@@ -64,7 +70,7 @@ class Test{
 
                 for(var r=0; r<10; r++){
                     
-
+                    console.log('iterIJSliceRotate', this.setArr, i, j, r)
                     assert.equal(
                             recursion.iterIJSliceRotate(this.setArr,  i, j, r)
                         .equals(
@@ -74,7 +80,7 @@ class Test{
                     )
 
                     for(var n=0; n<10; n++){
-
+                        console.log('iterJSliceRotate', this.setArr, i, j, r, n)
                         assert.equal(
                                 recursion.iterJSliceRotate(this.setArr,  i, j, r, n)
                             .equals(
@@ -84,6 +90,7 @@ class Test{
                             
                         )
 
+                        console.log('iterJSliceRotate', this.setArr, i, j, r, n)
                         assert.equal(
                                 recursion.iterJSliceRotate(this.setArr,  i, j, r, n)
                             .equals(
@@ -92,8 +99,26 @@ class Test{
                             true
                         )
 
-                        for(var s=0; s<10; s++){
+                        console.log('reverseIterIJSliceRotate', this.setArr, i, j, r, n)
+                            assert.equal(
+                                    recursion.reverseIterIJSliceRotate(this.setArr,  i, j, r, n)
+                                .equals(
+                                    recursion.reverseIterIJSliceRotate(this.setStr, i, j, r, n)
+                                ),
+                                true
+                            )
 
+                        console.log('iterIJSliceRotateSwap', this.setArr, i, j, r, n)
+                        assert.equal(
+                                recursion.iterIJSliceRotateSwap(this.setArr,  i, j, r, n)
+                            .equals(
+                                recursion.iterIJSliceRotateSwap(this.setStr, i, j, r, n)
+                            ),
+                            true
+                        )
+
+                        for(var s=0; s<10; s++){
+                            console.log('iterJSliceRotateSwap', this.setArr, i, j, s, r, n)
                             assert.equal(
                                     recursion.iterJSliceRotateSwap(this.setArr,  i, j, s, r, n)
                                 .equals(
@@ -102,14 +127,8 @@ class Test{
                                 true
                             )
 
-                            assert.equal(
-                                    recursion.iterIJSliceRotateSwap(this.setArr,  i, j, s, r, n)
-                                .equals(
-                                    recursion.iterIJSliceRotateSwap(this.setStr, i, j, s, r, n)
-                                ),
-                                true
-                            )
-
+                            
+                            console.log('iterIJSSliceRotateSwap', this.setArr, i, j, s, r, n)
                             assert.equal(
                                     recursion.iterIJSSliceRotateSwap(this.setArr,  i, j, s, r, n)
                                 .equals(
@@ -117,14 +136,7 @@ class Test{
                                 ),
                                 true
                             )
-
-                            assert.equal(
-                                    recursion.reverseIterIJSliceRotate(this.setArr,  i, j, r, n)
-                                .equals(
-                                    recursion.reverseIterIJSliceRotate(this.setStr, i, j, r, n)
-                                ),
-                                true
-                            )
+                            
                         }
                     }
                 }
