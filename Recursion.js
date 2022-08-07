@@ -284,7 +284,25 @@ export class Recursion{
         return array
     }
 
-    paths(tree, gArr=[], n=0){
-        
+    paths(tree, path={}, gArr=[], n=0){
+        if(!Object.keys(tree).length){
+            return
+        }else{
+            if(!n){
+                for(var i = 0; i<Object.keys(tree).length; i++){
+                    var p = {}
+                    p[Object.keys(tree)[i]]={}
+                    gArr.concat(this.paths(tree[Object.keys(tree)[i]], p, [], n+1))
+                }
+            }else{
+                for(var i=0; i<Object.keys(tree).length; i++){
+                    var cp = Object.assign({}, path);
+                    cp[Object.keys(path)[i]]={}
+                    gArr.concat(this.paths(tree[Object.keys(tree)[i]], cp, [], n+1))
+                }
+            }
+
+        }
+        return gArr
     }
 }
