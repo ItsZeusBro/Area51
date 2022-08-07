@@ -49,7 +49,7 @@ export class Recursion{
             j=j-i;
             i=0;
         }
-        if(n==0){return}
+        if(n==0){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -72,7 +72,7 @@ export class Recursion{
             j=j-i;
             i=0;
         }
-        if(n==0){return}
+        if(n==0){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -96,7 +96,7 @@ export class Recursion{
             j=j-i;
             i=0;
         }
-        if(n==0){return}
+        if(n==0){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -117,7 +117,7 @@ export class Recursion{
     }
 
     iterJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
-        if(n==0){return}
+        if(n==0){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -136,9 +136,7 @@ export class Recursion{
 
 
     iterJSlice(set, i=0, j=1, array=[]){
-        if(j==set.length+1){
-            return
-        }
+        if(j==set.length+1){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -154,9 +152,7 @@ export class Recursion{
     }
 
     reverseIterJSlice(set, i=0, j=1, array=[]){
-        if(j==0){
-            return
-        }
+        if(j==0){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -172,7 +168,7 @@ export class Recursion{
     }
 
     iterIJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
-        if(n==0){return}
+        if(n==0){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -191,7 +187,7 @@ export class Recursion{
     }
 
     reverseIterIJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
-        if(n==0){return}
+        if(n==0){return []}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
