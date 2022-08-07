@@ -11,11 +11,12 @@ class Test{
     tests(){
         this._orderedPinchSet()
         this._orderedExpandSet()
-        this.inputOutput()
+        this.inputOutput(5)
+        this._experiments()
+        this._iterables()
 
     }
-
-    inputOutput(){
+    inputOutput(x){
         Array.prototype.equals = function(arr2) {
             return (
               this.length === arr2.length &&
@@ -25,7 +26,7 @@ class Test{
 
         var recursion = new Recursion()
 
-        for(var i=0; i<10; i++){
+        for(var i=0; i<x; i++){
             console.log('rotate', this.setArr, i)
             assert.equal(
                 recursion.rotate(this.setArr,  i).equals(recursion.rotate(this.setStr, i)),
@@ -40,7 +41,7 @@ class Test{
             }
 
 
-            for(var j=0; j<10; j++){
+            for(var j=0; j<x; j++){
                 console.log('swap', this.setArr, i, j)
                 assert.equal(
                         recursion.swap(this.setArr,  i, j)
@@ -68,7 +69,7 @@ class Test{
                     true  
                 )
 
-                for(var r=0; r<10; r++){
+                for(var r=0; r<x; r++){
                     
                     console.log('iterIJSliceRotate', this.setArr, i, j, r)
                     assert.equal(
@@ -79,7 +80,7 @@ class Test{
                         true
                     )
 
-                    for(var n=0; n<10; n++){
+                    for(var n=0; n<x; n++){
                         console.log('iterJSliceRotate', this.setArr, i, j, r, n)
                         assert.equal(
                                 recursion.iterJSliceRotate(this.setArr,  i, j, r, n)
@@ -117,7 +118,7 @@ class Test{
                             true
                         )
 
-                        for(var s=0; s<10; s++){
+                        for(var s=0; s<x; s++){
                             console.log('iterJSliceRotateSwap', this.setArr, i, j, s, r, n)
                             assert.equal(
                                     recursion.iterJSliceRotateSwap(this.setArr,  i, j, s, r, n)
@@ -126,8 +127,6 @@ class Test{
                                 ),
                                 true
                             )
-
-                            
                             console.log('iterIJSSliceRotateSwap', this.setArr, i, j, s, r, n)
                             assert.equal(
                                     recursion.iterIJSSliceRotateSwap(this.setArr,  i, j, s, r, n)
@@ -136,7 +135,6 @@ class Test{
                                 ),
                                 true
                             )
-                            
                         }
                     }
                 }
@@ -145,7 +143,18 @@ class Test{
     }
     _experiments(){
         
-        this.iterJSliceExperiment(this.setStr)
+        console.log(this.iterJSliceExperiment(this.setStr, 0, 2))
+    }
+    iterJSliceExperiment(set, i, j){
+        var recursion = new Recursion()
+        return recursion.iterJSlice(set, i, j)
+    }
+    _iterables(){
+        console.log(this.iterables(this.setStr))
+    }
+    iterables(set){
+        var recursion = new Recursion()
+        return recursion.iterables(set)
     }
 
     _orderedPinchSet(){
@@ -156,10 +165,8 @@ class Test{
     }
 
     _orderedExpandSet(){
-
         var expandSet = this.orderedExpandSet(this.setArr)
         console.log(expandSet)
-        
     }
 
     orderedPinchSet(set){
@@ -173,10 +180,8 @@ class Test{
         var recursion = new Recursion()
         return recursion.iterJSlice(set, i, j)
     }
-    iterJSliceExperiment(set, i, j){
-        var recursion = new Recursion()
-        return recursion.iterJSlice(set, i, j)
-    }
+
+
 }
 
 new Test()

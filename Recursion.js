@@ -273,5 +273,14 @@ export class Recursion{
             return str
         }
     }
-}
 
+    iterables(str, n=0, array=[]){
+        if(n==str.length){
+            return array
+        }else{
+            array.push(str.slice(n, n+1)[0])
+            this.iterables(str, n+1, array)
+        }
+        return array
+    }
+}
