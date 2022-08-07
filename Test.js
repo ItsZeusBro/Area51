@@ -158,14 +158,38 @@ class Test{
                         }
                     }
                 },
-                '9':{
-                    'payload':{
-                        'some':'payload_9'
-                    }
-                }
+                '9':[   
+                        {
+                            '10':[
+                                {
+                                    'aa':{
+                                        'payload':{
+                                            'some':'payload_aa'
+                                        }
+                                    }
+                                },
+                                {
+                                    'bb':{
+                                        'payload':{
+                                            'some':'payload_bb'
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            '11':{
+                                'payload':{
+                                    'some':'payload_11'
+                                }
+                            }
+                        }
+
+                    ]
             }
-            
         }
+            
+        
         this.tests()
     }
 

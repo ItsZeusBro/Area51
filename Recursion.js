@@ -297,8 +297,15 @@ export class Recursion{
             return
         }else{
             for(var i = 0; i<rKeys.length; i++){
-                var _path=[].concat(path).concat({[rKeys[i]]: tree[rKeys[i]]['payload']})
-                this.paths(tree[rKeys[i]], _path, _paths)
+                if(Array.isArray(tree[rKeys[i]])){
+                    for(var j = 0; j<tree[rKeys[i]].length; j++){
+                        var _path=[].concat(path).concat({[rKeys[i]]: undefined})
+                        this.paths(tree[rKeys[i]][j], _path, _paths)
+                    }
+                }else if(typeof tree[rKeys[i]] === 'object'){
+                    var _path=[].concat(path).concat({[rKeys[i]]: tree[rKeys[i]]['payload']})
+                    this.paths(tree[rKeys[i]], _path, _paths)
+                }
             }
         }
         return _paths
