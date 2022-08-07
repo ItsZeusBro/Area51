@@ -8,202 +8,223 @@ class Test{
         this.setStr = "abcdefghijklmnopqrstuvwxyz"
         this.tree = {
             'payload':{
-                'some':'payload_0'
+                '0a':'0a'
             },
-            'a':{
+            '1a':{
                 'payload':{
-                    'some':'payload_a'
+                    '1a':'1a'
                 },
-                '1':{
+                '1a2a':{
                     'payload':{
-                        'some':'payload_1'
+                        '1a2a':'1a2a'
                     },
-                    'd':{
+                    '1a2a3a':{
                         'payload':{
-                            'some':'payload_d'
+                            '1a2a3a':'1a2a3a'
                         }
                     },
-                    'e':{
+                    '1a2a3b':{
                         'payload':{
-                            'some':'payload_e'
+                            '1a2a3b':'1a2a3b'
                         }
                     },
-                    'f':{
+                    '1a2a3c':{
                         'payload':{
-                            'some':'payload_f'
+                            '1a2a3c':'1a2a3c'
                         }
                     }
                 },
-                '2':{
+                '1a2b':{
                     'payload':{
-                        'some':'payload_2'
+                        '1a2b':'pay1a2bload_2'
                     },
-                    'g':{
+                    '1a2b3a':{
                         'payload':{
-                            'some':'payload_g'
+                            '1a2b3a':'1a2b3a'
                         }
                     },
-                    'h':{
+                    '1a2b3b':{
                         'payload':{
-                            'some':'payload_h'
+                            '1a2b3b':'1a2b3b'
                         }
                     },
-                    'i':{
+                    '1a2b3c':{
                         'payload':{
-                            'some':'payload_i'
+                            '1a2b3c':'1a2b3c'
                         }
                     }
                 },
-                '3':{
+                '1a2c':{
                     'payload':{
-                        'some':'payload_3'
+                        '1a2c':'1a2c'
                     },
-                    'j':{
+                    '1a2c3a':{
                         'payload':{
-                            'some':'payload_j'
+                            '1a2c3a':'1a2c3a'
                         }
                     },
-                    'k':{
+                    '1a2c3b':{
                         'payload':{
-                            'some':'payload_k'
+                            '1a2c3b':'1a2c3b'
                         }
                     },
-                    'l':{
+                    '1a2c3c':{
                         'payload':{
-                            'some':'payload_l'
+                            '1a2c3c':'1a2c3c'
                         }
                     }
                 }
             }, 
-            'b':{
-                '4':{
-                    'm':{
+            '1b':{
+                'payload':{
+                    '1b':'1b'
+                },
+                '1b2a':{
+                    'payload':{
+                        '1b2a':'1b2a'
+                    },
+                    '1b2a3a':{
                         'payload':{
-                            'some':'payload_m'
+                            '1b2a3a':'1b2a3a'
                         }
                     },
-                    'n':{
+                    '1b2a3b':{
                         'payload':{
-                            'some':'payload_n'
+                            '1b2a3b':'1b2a3b'
                         }
                     },
-                    'o':{
+                    '1b2a3c':{
                         'payload':{
-                            'some':'payload_o'
+                            '1b2a3c':'1b2a3c'
                         }
                     }
                 },
-                '5':{
-                    'p':{
+                '1b2b':{
+                    'payload':{
+                        '1b2b':'1b2b'
+                    },
+                    '1b2b3a':{
                         'payload':{
-                            'some':'payload_p'
+                            '1b2b3a':'1b2b3a'
                         }
                     },
-                    'q':{
+                    '1b2b3b':{
                         'payload':{
-                            'some':'payload_q'
+                            '1b2b3b':'1b2b3b'
                         }
                     },
-                    'r':{
+                    '1b2b3c':{
                         'payload':{
-                            'some':'payload_r'
+                            '1b2b3c':'1b2b3c'
                         }
                     }
                 },
-                '6':{
-                    's':{
+                '1b2c':{
+                    'payload':{
+                        '1b2c':'1b2c'
+                    },
+                    '1b2c3a':{
                         'payload':{
-                            'some':'payload_s'
+                            '1b2c3a':'1b2c3a'
                         }
                     },
-                    't':{
+                    '1b2c3b':{
                         'payload':{
-                            'some':'payload_t'
+                            '1b2c3b':'1b2c3b'
                         }
                     },
-                    'u':{
+                    '1b2c3c':{
                         'payload':{
-                            'some':'payload_u'
+                            '1b2c3c':'1b2c3c'
                         }
                     }
                 }
             },
-            'c':{
-                '7':{
-                    'v':{
+            '1c':{
+                'payload':{
+                    '1c':'1c'
+                },
+                '1c2a':{
+                    'payload':{
+                        '1c2a':'1c2a'
+                    },
+                    '1c2a3a':{
                         'payload':{
-                            'some':'payload_v'
+                            '1c2a3a':'1c2a3a'
                         }
                     },
-                    'w':{
+                    '1c2a3b':{
                         'payload':{
-                            'some':'payload_w'
+                            '1c2a3b':'1c2a3b'
                         }
                     },
-                    'x':{
+                    '1c2a3c':{
                         'payload':{
-                            'some':'payload_x'
+                            '1c2a3c':'1c2a3c'
                         }
                     }
                 },
-                '8':{
-                    'y':{
+                '1c2b':{
+                    'payload':{
+                        '1c2b':'1c2b'
+                    },
+                    '1c2b3a':{
                         'payload':{
-                            'some':'payload_y'
+                            '1c2b3a':'1c2b3a'
                         }
                     },
-                    'z':{
+                    '1c2b3b':{
                         'payload':{
-                            'some':'payload_z'
+                            '1c2b3b':'1c2b3b'
                         }
                     }
                 },
-                '9':[   
+                '1c2c':[   
                         {
-                            '10':[
+                            '1c2c3a':[
                                 {
-                                    'aa':{
+                                    '1c2c3a4a':{
                                         'payload':{
-                                            'some':'payload_aa'
+                                            '1c2c3a4a':'1c2c3a4a'
                                         }
                                     }
                                 },
                                 {
-                                    'bb':{
+                                    '1c2c3a4b':{
                                         'payload':{
-                                            'some':'payload_bb'
+                                            '1c2c3a4b':'1c2c3a4b'
                                         }
                                     }
                                 }
                             ]
                         },
                         {
-                            '11':{
+                            '1c2c3b':{
                                 'payload':{
-                                    'some':'payload_11'
+                                    '1c2c3b':'1c2c3b'
                                 }
                             }
                         },
                         {
-                            '12':{
+                            '1c2c3c':{
                                 'payload':{
-                                    'some':'payload_12'
+                                    '1c2c3c':'1c2c3c'
                                 },
-                                'cc':{
+                                '1c2c3c4a':{
                                     'payload':{
-                                        'some':'payload_cc'
+                                        '1c2c3c4a':'1c2c3c4a'
                                     }
                                 },
-                                'dd':{
+                                '1c2c3c4b':{
                                     'payload':{
-                                        'some':'payload_dd'
+                                        '1c2c3c4b':'1c2c3c4b'
                                     }
                                 },
-                                'ee':[
+                                '1c2c3c4c':[
                                     {
-                                        '13':{
+                                        '1c2c3c4c5a':{
                                             'payload':{
-                                                'some':'payload_13'
+                                                '1c2c3c4c5a':'1c2c3c4c5a'
                                             }
                                         }
 
@@ -219,7 +240,6 @@ class Test{
             }
         }
             
-        
         this.tests()
     }
 
