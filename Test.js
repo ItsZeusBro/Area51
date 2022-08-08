@@ -109,7 +109,6 @@ class Test{
         this._orderedExpandSet()
         this.inputOutput(5)
         this._experiments()
-        this._iterables()
         this._paths()
     }
     
@@ -231,25 +230,25 @@ class Test{
     iterIJSliceRotateSwapInputTest(i, j, r, n, s, recursion){
         console.log("iterIJSliceRotateSwapInputTest ASSERT")
         assert.equal(
-                recursion.iterIJSliceRotateSwap(this.setArr,  i, j, s, r, n)
+                recursion.iterIJSliceRotateSwap(this.setArr,  i, j, r, n, s)
             .equals(
-                recursion.iterIJSliceRotateSwap(this.setStr, i, j, s, r, n)
+                recursion.iterIJSliceRotateSwap(this.setStr, i, j, r, n, s)
             ),
             true
         )
 
         assert.equal(
-                recursion.iterJSliceRotateSwap(this.setArr,  i, j, s, r, n)
+                recursion.iterJSliceRotateSwap(this.setArr,  i, j, r, n, s)
             .equals(
-                recursion.iterJSliceRotateSwap(this.setStr, i, j, s, r, n)
+                recursion.iterJSliceRotateSwap(this.setStr, i, j, r, n, s)
             ),
             true
         )
 
         assert.equal(
-                recursion.iterIJSSliceRotateSwap(this.setArr,  i, j, s, r, n)
+                recursion.iterIJSSliceRotateSwap(this.setArr,  i, j, r, n, s)
             .equals(
-                recursion.iterIJSSliceRotateSwap(this.setStr, i, j, s, r, n)
+                recursion.iterIJSSliceRotateSwap(this.setStr, i, j, r, n, s)
             ),
             true
         )
@@ -264,15 +263,6 @@ class Test{
     iterJSliceExperiment(set, i, j){
         var recursion = new Recursion()
         return recursion.iterJSlice(set, i, j)
-    }
-
-    _iterables(){
-        this.iterables(this.setStr)
-    }
-
-    iterables(set){
-        var recursion = new Recursion()
-        return recursion.iterables(set)
     }
 
     _paths(){
@@ -318,7 +308,7 @@ class Test{
         if(obj){
             util.inspect(obj, false, null, true)
         }
-      }
+    }
 }
 
 new Test()
