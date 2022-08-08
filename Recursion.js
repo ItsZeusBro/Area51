@@ -310,19 +310,68 @@ export class Recursion{
         }
         return _paths
     }    
-    validate(tree, path, n=0){
-        if(Array.isArray(tree[path[n]])){
+//  [
+//     { '1b': { '1b': '1b' } },        //n=0
+//     { '1b2b': undefined },           //n=1
+//     { '1b2b3b': { '1b2b3b': '1b2b3b' } },
+//     { '1b2b3b4c': undefined },
+//     { '1b2b3b4c5a': { '1b2b3b4c5a': '1b2b3b4c5a' } }
+//  ]
+//
+// ...
+//{
+//  ...
+//     '1b2b3b':{
+//         'payload':{
+//             '1b2b3b':'1b2b3b'
+//         },
+//            ...
+//         '1b2b3b4c':[
+//             {
+//                 '1b2b3b4c5a':{
+//                     'payload':{
+//                         '1b2b3b4c5a':'1b2b3b4c5a'
+//                     }
+//                 }
+//             }
+//         ]
+//     }
+//...
+// }
+//...
 
-        }else{
-            this._validate(tree[path[n]], path[n])
-            this.validate(tree[path[n]], path, n+1)
+
+    validate(tree, path, n=0, invalid=[false]){
+        console.log("path", path, "n", n)
+        if(invalid[0] || (n>path.length-1)){
+            return
         }
-    }
-    _validate(){
-        
-    }
+        if(!tree[Object.keys(path[n])[0]]){
+            invalid[0]=true
+            return false
+        }
 
-    getPath(tree, keyPath){
-        //creates a new object from the key path
+        if(Array.isArray(tree[path[n]])){
+            //this means the tree value is an array
+            var arr = tree[path[n]]
+            for(var i=0; i<arr.length; i++){
+                if(arr[i][Object.keys(path[n])[0]]){
+                    this.validate(arr[i][Object.keys(path[n])[0]], path, n+1, invalid)
+                }else{
+                    invalid[0]=true
+                    return false
+                }
+            }
+        }else{
+            //this means the tree value is an object
+            if(tree[Object.keys(path[n])[0]]){
+                console.log(tree[Object.keys(path[n])[0]])
+                this.validate(tree[Object.keys(path[n])[0]], path, n+1, invalid)
+            }else{
+                invalid[0]=true
+                return false
+            }
+        }
+        return true
     }
 }

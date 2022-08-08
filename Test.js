@@ -255,13 +255,14 @@ class Test{
     }
 
     _paths(){
-        this.validate(this.paths(this.tree))
+        this._validate(this.paths(this.tree))
     }
 
     _validate(paths){
         var recursion = new Recursion()
         for(var i = 0; i<paths.length; i++){
-            assert.equal(this.recursion.validate(this.tree, paths[i]), true)
+            //console.log(paths[i])
+            assert.equal(recursion.validate(this.tree, paths[i]), true)
         }
     }
 
