@@ -20,8 +20,9 @@ export class Recursion{
     }
 
 
-    iterJSlice(set, i=0, j=1, array=[]){
-        if(j>set.length+1||i>set.length+1){return}
+    iterJSlice(set, i=0, j=1, n=set.length-j, array=[]){
+        if(n==0){return}
+        j=j%(set.length+1)
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -33,7 +34,7 @@ export class Recursion{
         }
 
         j++;
-        this.iterJSlice(set, i, j, array)
+        this.iterJSlice(set, i, j, n-1, array)
         return array
     }
 

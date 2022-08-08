@@ -113,14 +113,14 @@ class Test{
         // this._orderedExpandSet()
         // this.inputOutput(5)
         // this._paths()
-        //this._sliceRoll()
-        this._sliceWrap()
+        this._sliceRoll()
+        //this._sliceWrap()
+        //this.experiments()
     }
     experiments(){
-        for(var i = 0; i<100; i++){
-            for(var j =0; j<100; j++){
-
-                var defined = this.reverseIterJSliceExperiment(this.setStr, i, j)
+        for(var i=0; i<100; i++){
+            for(var j=0; j<100; j++){
+                var defined = this.iterJSliceExperiment(this.setStr, i, j)
                 if(defined){
                     console.log("i", i, "j", j)
                     console.log(defined)
@@ -142,17 +142,17 @@ class Test{
 
     _sliceRoll(){
         var set = this.setStr
-        for(var i =0; i<this.setStr.length; i++){
+        for(var i=0; i<this.setStr.length; i++){
             for(var j=i+1; j<this.setStr.length; j++){
                 console.log('sliceRoll', i, j)
-                console.log(this.sliceRoll(set, i, j))
+                console.log(this.sliceRoll(set, i, j, 100))
             }
         }
     }
 
     _sliceWrap(){
         var set = this.setStr
-        for(var i =0; i<=this.setStr.length; i++){
+        for(var i=0; i<=this.setStr.length; i++){
             for(var j=i+1; j<=this.setStr.length; j++){
                 console.log('sliceWrap', i, j)
                 console.log(this.sliceWrap(set, i, j))
@@ -348,14 +348,13 @@ class Test{
         }
     }
 
-    sliceRoll(set, i, j){
+    sliceRoll(set, i, j, n){
         //returns the entire iterative subset of slices between i and j
-        if((!set)||(!i)||(!j)||(j<=i)){
+        if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
             return
         }
         var recursion = new Recursion()
-        var result = recursion.iterJSlice(set, i, j)
-        result.pop()
+        var result = recursion.iterJSlice(set, i, j, n)
         return result
     }
 
@@ -365,7 +364,7 @@ class Test{
             return
         }
         var recursion = new Recursion()
-        var result = recursion.reverseIterJSlice(set, i, j)
+        var result = recursion.reverseIterJSlice(set, i, j, n)
         return result
     }
 }
