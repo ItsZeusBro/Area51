@@ -122,8 +122,8 @@ class Test{
             for(var j=0; j<100; j++){
                 var defined = this.iterJSliceExperiment(this.setStr, i, j)
                 if(defined){
-                    console.log("i", i, "j", j)
-                    console.log(defined)
+                    //console.log("i", i, "j", j)
+                    //console.log(defined)
                 }
 
 
@@ -146,6 +146,7 @@ class Test{
             for(var j=i+1; j<this.setStr.length; j++){
                 console.log('sliceRoll', i, j, n)
                 console.log(this.sliceRoll(set, i, j, n))
+                console.log()
             }
         }
     }
@@ -355,10 +356,21 @@ class Test{
         }
         var recursion = new Recursion()
         var result = recursion.iterJSlice(set, i, j, n)
+        this.sliceRollValidate(result, i)
         if(n){
             assert.equal(result.length, n)
+        }else{
+            assert.equal(set.length-j+1, result.length)
         }
         return result
+    }
+
+    sliceRollValidate(result, i){
+        //check to make sure result does not violate 
+        //i'th set char at index result[z]0 
+        for(var z=0; z<result.length; z++){
+            assert.equal(result[z][0], set[i])
+        }
     }
 
     sliceWrap(set, i, j, n){
@@ -368,8 +380,13 @@ class Test{
         }
         var recursion = new Recursion()
         var result = recursion.reverseIterJSlice(set, i, j, n)
+        for(var z=0; z<result.length; z++){
+            assert.equal(result[z][0], set[i])
+        }
         if(n){
             assert.equal(result.length, n)
+        }else{
+            assert.equal(set.length-j+1, result.length)
         }
         return result
     }
