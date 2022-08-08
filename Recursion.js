@@ -310,6 +310,17 @@ export class Recursion{
         }
         return _paths
     }    
+    validate(tree, path, n=0){
+        if(Array.isArray(tree[path[n]])){
+
+        }else{
+            this._validate(tree[path[n]], path[n])
+            this.validate(tree[path[n]], path, n+1)
+        }
+    }
+    _validate(){
+        
+    }
 
     getPath(tree, keyPath){
         //creates a new object from the key path

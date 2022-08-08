@@ -4,7 +4,11 @@ import * as util from "node:util"
 
 class Test{
     constructor(){
-        this.setArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+        this.setArr = [
+            'a','b','c','d','e','f','g','h','i',
+            'j','k','l','m','n','o','p','q','r',
+            's','t','u','v','w','x','y','z'
+        ]
         this.setStr = "abcdefghijklmnopqrstuvwxyz"
         this.tree = {
             'payload':{
@@ -97,7 +101,6 @@ class Test{
                 ]
             }
         }
-            
         this.tests()
     }
 
@@ -107,7 +110,7 @@ class Test{
         this.inputOutput(5)
         this._experiments()
         this._iterables()
-        this._recursivePaths()
+        this._paths()
 
     }
     inputOutput(x){
@@ -250,17 +253,26 @@ class Test{
         var recursion = new Recursion()
         return recursion.iterables(set)
     }
-    _recursivePaths(){
-        this.log(this.recursivePaths(this.tree))
+
+    _paths(){
+        this.validate(this.paths(this.tree))
     }
 
-    recursivePaths(tree){
+    _validate(paths){
+        var recursion = new Recursion()
+        for(var i = 0; i<paths.length; i++){
+            assert.equal(this.recursion.validate(this.tree, paths[i]), true)
+        }
+    }
+
+
+    paths(tree){
         var recursion = new Recursion()
         var arr=recursion.paths(tree)
         return arr
     }
-    _orderedPinchSet(){
 
+    _orderedPinchSet(){
         var pinchSet = this.orderedPinchSet(this.setArr)
         console.log(pinchSet)
         
