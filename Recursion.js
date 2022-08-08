@@ -116,6 +116,8 @@ export class Recursion{
         return array
     }
 
+
+
     iterJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
         if(n==0){return []}
         var slice;
@@ -310,35 +312,6 @@ export class Recursion{
         }
         return _paths
     }    
-//  [
-//     { '1b': { '1b': '1b' } },        //n=0
-//     { '1b2b': undefined },           //n=1
-//     { '1b2b3b': { '1b2b3b': '1b2b3b' } },
-//     { '1b2b3b4c': undefined },
-//     { '1b2b3b4c5a': { '1b2b3b4c5a': '1b2b3b4c5a' } }
-//  ]
-//
-// ...
-//{
-//  ...
-//     '1b2b3b':{
-//         'payload':{
-//             '1b2b3b':'1b2b3b'
-//         },
-//            ...
-//         '1b2b3b4c':[
-//             {
-//                 '1b2b3b4c5a':{
-//                     'payload':{
-//                         '1b2b3b4c5a':'1b2b3b4c5a'
-//                     }
-//                 }
-//             }
-//         ]
-//     }
-//...
-// }
-//...
 
 
     validate(tree, path, n=0, invalid=[false]){
