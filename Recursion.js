@@ -342,16 +342,12 @@ export class Recursion{
 
 
     validate(tree, path, n=0, invalid=[false]){
-        console.log("path", path, "n", n)
-        if(invalid[0] || (n>path.length-1)){
+        if(!tree || !path || invalid[0] || (n>path.length-1)){
             return
-        }
-        if(!tree[Object.keys(path[n])[0]]){
-            invalid[0]=true
-            return false
         }
 
         if(Array.isArray(tree[path[n]])){
+            console.log("tree",tree, "path[n]", path[n])
             //this means the tree value is an array
             var arr = tree[path[n]]
             for(var i=0; i<arr.length; i++){
@@ -359,7 +355,7 @@ export class Recursion{
                     this.validate(arr[i][Object.keys(path[n])[0]], path, n+1, invalid)
                 }else{
                     invalid[0]=true
-                    return false
+                    return
                 }
             }
         }else{
@@ -369,9 +365,9 @@ export class Recursion{
                 this.validate(tree[Object.keys(path[n])[0]], path, n+1, invalid)
             }else{
                 invalid[0]=true
-                return false
+                return
             }
         }
-        return true
+        return !invalid[0]
     }
 }
