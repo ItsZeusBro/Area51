@@ -342,35 +342,38 @@ export class Recursion{
 
 
     validate(tree, path, n=0, invalid=[false]){
-
-        if((n>path.length-1) || invalid[0]){
-            return
-        }
-
-        if(Array.isArray(tree)){
-            
-            for(var i=0; i<tree.length; i++){
-                var key = Object.keys(path[n])[0]
-                if(tree[i][key]){
-                    return this.validate(tree[i][key], path, n+1, invalid)  //short circuit when valid
-                }
-            }
+        if((!tree)||!path||n<0||!invalid.length){
             invalid[0]=true
-            return
-
-        }else if(typeof tree === 'object'){
-
-            var key = Object.keys(path[n])[0]
-            if(tree[key]){
-                this.validate(tree[key], path, n+1, invalid)
+            return !invalid[0]
+        }else{
+            if((n>path.length-1) || invalid[0]){
+                return
+            }
+            if(Array.isArray(tree)){
+                
+                for(var i=0; i<tree.length; i++){
+                    var key = Object.keys(path[n])[0]
+                    if(tree[i][key]){
+                        return this.validate(tree[i][key], path, n+1, invalid)  //short circuit when valid
+                    }
+                }
+                invalid[0]=true
+                return
+            }else if(typeof tree === 'object'){
+    
+                var key = Object.keys(path[n])[0]
+                if(tree[key]){
+                    this.validate(tree[key], path, n+1, invalid)
+                }else{
+                    invalid[0]=true
+                    return
+                }
             }else{
                 invalid[0]=true
                 return
             }
-        }else{
-            invalid[0]=true
-            return
         }
+        
         return !invalid[0]
     }
 }
