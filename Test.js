@@ -114,7 +114,7 @@ class Test{
         // this.inputOutput(5)
         // this._paths()
         this._sliceRoll()
-        //this._sliceWrap()
+        this._sliceWrap()
         //this.experiments()
     }
     experiments(){
@@ -140,22 +140,22 @@ class Test{
         return recursion.reverseIterJSlice(set, i, j)
     }
 
-    _sliceRoll(){
+    _sliceRoll(n){
         var set = this.setStr
         for(var i=0; i<this.setStr.length; i++){
             for(var j=i+1; j<this.setStr.length; j++){
-                console.log('sliceRoll', i, j)
-                console.log(this.sliceRoll(set, i, j, 100))
+                console.log('sliceRoll', i, j, n)
+                console.log(this.sliceRoll(set, i, j, n))
             }
         }
     }
 
-    _sliceWrap(){
+    _sliceWrap(n){
         var set = this.setStr
         for(var i=0; i<=this.setStr.length; i++){
             for(var j=i+1; j<=this.setStr.length; j++){
-                console.log('sliceWrap', i, j)
-                console.log(this.sliceWrap(set, i, j))
+                console.log('sliceWrap', i, j, n)
+                console.log(this.sliceWrap(set, i, j, n))
             }
         }
     }
@@ -355,16 +355,22 @@ class Test{
         }
         var recursion = new Recursion()
         var result = recursion.iterJSlice(set, i, j, n)
+        if(n){
+            assert.equal(result.length, n)
+        }
         return result
     }
 
-    sliceWrap(set, i, j){
+    sliceWrap(set, i, j, n){
         //returns the entire iterative subset of slices between i and j
         if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
             return
         }
         var recursion = new Recursion()
         var result = recursion.reverseIterJSlice(set, i, j, n)
+        if(n){
+            assert.equal(result.length, n)
+        }
         return result
     }
 }
