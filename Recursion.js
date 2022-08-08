@@ -342,31 +342,38 @@ export class Recursion{
 
 
     validate(tree, path, n=0, invalid=[false]){
-        if(!tree || !path || invalid[0] || (n>path.length-1)){
+
+        if((n>path.length-1)|| invalid[0]){
             return
         }
 
-        if(Array.isArray(tree[path[n]])){
-            console.log("tree",tree, "path[n]", path[n])
-            //this means the tree value is an array
-            var arr = tree[path[n]]
-            for(var i=0; i<arr.length; i++){
-                if(arr[i][Object.keys(path[n])[0]]){
-                    this.validate(arr[i][Object.keys(path[n])[0]], path, n+1, invalid)
+        if(Array.isArray(tree)){
+            for(var i=0; i<tree.length; i++){
+                var key = Object.keys(path[n])[0]
+                if(tree[i][key]){
+                    this.validate(tree[i][key], path, n+1, invalid)
                 }else{
+                    console.log('ARRAY ERROR!')
+                    console.log("tree",tree, "path[n]", path[n])
                     invalid[0]=true
                     return
                 }
             }
-        }else{
-            //this means the tree value is an object
-            if(tree[Object.keys(path[n])[0]]){
-                console.log(tree[Object.keys(path[n])[0]])
-                this.validate(tree[Object.keys(path[n])[0]], path, n+1, invalid)
+        }else if(typeof tree === 'object'){
+            var key = Object.keys(path[n])[0]
+            if(tree[key]){
+                this.validate(tree[key], path, n+1, invalid)
             }else{
+                console.log('OBJECT ERROR!!!')
+                console.log("tree",tree, "path[n]", path[n])
                 invalid[0]=true
                 return
             }
+        }else{
+            console.log('SCHEMA ERROR!!!')
+            console.log("tree",tree, "path[n]", path[n])
+            invalid[0]=true
+            return
         }
         return !invalid[0]
     }
