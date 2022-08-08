@@ -3,7 +3,7 @@ import * as assert from "node:assert"
 import * as util from "node:util"
 
 class Test{
-    constructor(){
+    constructor(experiment=false){
         this.setArr = [
             'a','b','c','d','e','f','g','h','i',
             'j','k','l','m','n','o','p','q','r',
@@ -101,17 +101,49 @@ class Test{
                 ]
             }
         }
-        this.tests()
+        if(!experiment){
+            this.tests()
+        }else{
+            this.experiments()
+        }
     }
 
     tests(){
         this._orderedPinchSet()
         this._orderedExpandSet()
         this.inputOutput(5)
-        this._experiments()
         this._paths()
+        this._sliceSet()
     }
-    
+    experiments(){
+        for(var i = 0; i<100; i++){
+            for(var j =0; j<100; j++){
+
+                var defined = this.iterJSliceExperiment(this.setStr, i, j)
+                if(defined){
+                    console.log("i", i, "j", j)
+                    console.log(defined)
+                }
+
+
+            }
+        }
+
+    }
+    iterJSliceExperiment(set, i, j){
+        var recursion = new Recursion()
+        return recursion.iterJSlice(set, i, j)
+    }
+
+    _sliceRoll(){
+        var set = this.setStr
+        for(var i =0; i<this.setStr.length; i++){
+            for(var j=i+1; j<this.setStr.length; j++){
+                console.log('sliceSet', i, j)
+                console.log(this.sliceRoll(set, i, j))
+            }
+        }
+    }
 
     inputOutput(x){
         Array.prototype.equals = function(arr2) {
@@ -256,15 +288,6 @@ class Test{
     }
 
 
-    _experiments(){
-        this.iterJSliceExperiment(this.setStr, 0, 2)
-    }
-
-    iterJSliceExperiment(set, i, j){
-        var recursion = new Recursion()
-        return recursion.iterJSlice(set, i, j)
-    }
-
     _paths(){
         this._validate(this.paths(this.tree))
     }
@@ -308,6 +331,15 @@ class Test{
         if(obj){
             util.inspect(obj, false, null, true)
         }
+    }
+
+    sliceRoll(set, i, j){
+        //returns the entire iterative subset of slices between i and j
+        if((!set)||(!i)||(!j)||(j<=i)){
+            return
+        }
+        var recursion = new Recursion()
+        return recursion.iterJSlice(set, i, j)
     }
 }
 

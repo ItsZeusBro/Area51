@@ -21,7 +21,7 @@ export class Recursion{
 
 
     iterJSlice(set, i=0, j=1, array=[]){
-        if(j==set.length+1){return []}
+        if(j>set.length+1||i>set.length+1){return}
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -126,7 +126,7 @@ export class Recursion{
         set = this.swap(set, i, s)
         j++;
         n--;
-        this.iterJSliceRotateSwap(set, i, j, r, s, n, array)
+        this.iterJSliceRotateSwap(set, i, j, r, n, s, array)
         if(!array){return []}
         return array
     }
@@ -150,7 +150,7 @@ export class Recursion{
         i++;
         j++;
         n--;
-        this.iterIJSliceRotateSwap(set, i, j, r, s, n, array)
+        this.iterIJSliceRotateSwap(set, i, j, r, n, s, array)
         if(!array){return []}
         return array
     }
@@ -175,7 +175,7 @@ export class Recursion{
         j++;
         s++;
         n--;
-        this.iterIJSSliceRotateSwap(set, i, j, r, s, n, array)
+        this.iterIJSSliceRotateSwap(set, i, j, r, n, s, array)
         if(!array){return []}
         return array
     }
