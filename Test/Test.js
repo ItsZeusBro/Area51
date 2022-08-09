@@ -105,11 +105,9 @@ class Test{
                 ]
             }
         }
-        if(!experiment){
-            this.tests(this.setArr, this.setStr, this.tree)
-        }else{
-            this.experiments()
-        }
+
+        this.tests(this.setArr, this.setStr, this.tree)
+        
     }
 
     tests(setArr, setStr, tree){

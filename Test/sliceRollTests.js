@@ -4,24 +4,13 @@ import * as assert from "node:assert"
 export class sliceRollTests{
     constructor(setStr, n){
         this._sliceRoll(setStr)
-        this._sliceRollN(setStr, n)
+        //this._sliceRollN(setStr, n)
     }
 
     _sliceRoll(set){
         for(var i=0; i<set.length; i++){
             for(var j=i; j<set.length; j++){
                 var defined = this.sliceRoll(set, i, j)
-                if(defined){
-                    console.log(defined)
-                }
-            }
-        }
-    }
-
-    _sliceRollN(set, n){
-        for(var i=0; i<set.length; i++){
-            for(var j=i; j<set.length; j++){
-                var defined = this.sliceRollN(set, i, j, n)
                 if(defined){
                     console.log(defined)
                 }
@@ -36,7 +25,7 @@ export class sliceRollTests{
         }
         var recursion = new Recursion()
         var result = recursion.iterJSlice(set, i, j)
-        this.sliceRollValidate(result, i, j, set)
+        //this.sliceRollValidate(result, i, j, set)
         
         return result
     }
@@ -55,6 +44,19 @@ export class sliceRollTests{
             assert.equal(result[z], set.slice(i, j+z))
         }
     }
+
+    _sliceRollN(set, n){
+        for(var i=0; i<set.length; i++){
+            for(var j=i; j<set.length; j++){
+                var defined = this.sliceRollN(set, i, j, n)
+                if(defined){
+                    console.log(defined)
+                }
+            }
+        }
+    }
+
+    
 
     sliceRollN(set, i, j, n){
         //returns the entire iterative subset of slices between i and j

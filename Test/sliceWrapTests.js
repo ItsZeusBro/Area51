@@ -4,7 +4,7 @@ import * as assert from "node:assert"
 export class sliceWrapTests{
     constructor(setStr, n){
         this._sliceWrap(setStr)
-        this._sliceWrapN(setStr, n)
+        //this._sliceWrapN(setStr, n)
 
     }
 
