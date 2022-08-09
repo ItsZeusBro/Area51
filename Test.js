@@ -111,10 +111,10 @@ class Test{
     tests(setArr, setStr, tree){
         this.inputOutput(setArr, setStr, 5)
         this._paths(tree)
-        this._sliceRoll(set)
-        this._sliceWrap(set)
-        this._sliceRollN(set, 100)
-        this._sliceWrapN(set, 100)
+        this._sliceRoll(setArr)
+        this._sliceWrap(setArr)
+        this._sliceRollN(setArr, 100)
+        this._sliceWrapN(setArr, 100)
         //this.experiments()
     }
 
@@ -127,50 +127,7 @@ class Test{
         return recursion.reverseIterJSlice(set, i, j)
     }
 
-    _sliceRoll(set){
-
-        for(var i=0; i<set.length; i++){
-            for(var j=i; j<set.length; j++){
-                var defined = this.sliceRoll(set, i, j)
-                if(defined){
-                    console.log(defined)
-                }
-            }
-        }
-    }
-
-    _sliceWrap(set){
-        for(var i=0; i<=set.length; i++){
-            for(var j=i; j<=set.length; j++){
-                var defined = this.sliceWrap(set, i, j)
-                if(defined){
-                    console.log(defined)
-                }
-            }
-        }
-    }
-
-    _sliceRollN(set, n){
-        for(var i=0; i<set.length; i++){
-            for(var j=i; j<set.length; j++){
-                var defined = this.sliceRollN(set, i, j, n)
-                if(defined){
-                    console.log(defined)
-                }
-            }
-        }
-    }
-
-    _sliceWrapN(set, n){
-        for(var i=0; i<=set.length; i++){
-            for(var j=i; j<=set.length; j++){
-                var defined = this.sliceWrapN(set, i, j, n)
-                if(defined){
-                    console.log(defined)
-                }
-            }
-        }
-    }
+    
 
     inputOutput(setArr, setStr, x){
         Array.prototype.equals = function(arr2) {
@@ -342,6 +299,52 @@ class Test{
         }
     }
 
+
+    _sliceRoll(set){
+
+        for(var i=0; i<set.length; i++){
+            for(var j=i; j<set.length; j++){
+                var defined = this.sliceRoll(set, i, j)
+                if(defined){
+                    console.log(defined)
+                }
+            }
+        }
+    }
+
+    _sliceWrap(set){
+        for(var i=0; i<=set.length; i++){
+            for(var j=i; j<=set.length; j++){
+                var defined = this.sliceWrap(set, i, j)
+                if(defined){
+                    console.log(defined)
+                }
+            }
+        }
+    }
+
+    _sliceRollN(set, n){
+        for(var i=0; i<set.length; i++){
+            for(var j=i; j<set.length; j++){
+                var defined = this.sliceRollN(set, i, j, n)
+                if(defined){
+                    console.log(defined)
+                }
+            }
+        }
+    }
+
+    _sliceWrapN(set, n){
+        for(var i=0; i<=set.length; i++){
+            for(var j=i; j<=set.length; j++){
+                var defined = this.sliceWrapN(set, i, j, n)
+                if(defined){
+                    console.log(defined)
+                }
+            }
+        }
+    }
+    
     sliceRoll(set, i, j){
         //returns the entire iterative subset of slices between i and j
         if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
