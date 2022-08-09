@@ -115,6 +115,8 @@ class Test{
         // this._paths()
         this._sliceRoll()
         this._sliceWrap()
+        this._sliceRollN(100)
+        this._sliceWrapN(100)
         //this.experiments()
     }
 
@@ -127,11 +129,11 @@ class Test{
         return recursion.reverseIterJSlice(set, i, j)
     }
 
-    _sliceRoll(n){
+    _sliceRoll(){
         var set = this.setStr
         for(var i=0; i<this.setStr.length; i++){
             for(var j=i; j<this.setStr.length; j++){
-                var defined = this.sliceRoll(set, i, j, n)
+                var defined = this.sliceRoll(set, i, j)
                 if(defined){
                     console.log(defined)
                 }
@@ -139,11 +141,37 @@ class Test{
         }
     }
 
-    _sliceWrap(n){
+
+
+    _sliceWrap(){
         var set = this.setStr
         for(var i=0; i<=this.setStr.length; i++){
             for(var j=i; j<=this.setStr.length; j++){
-                var defined = this.sliceWrap(set, i, j, n)
+                var defined = this.sliceWrap(set, i, j)
+                if(defined){
+                    console.log(defined)
+                }
+            }
+        }
+    }
+
+    _sliceRollN(n){
+        var set = this.setStr
+        for(var i=0; i<this.setStr.length; i++){
+            for(var j=i; j<this.setStr.length; j++){
+                var defined = this.sliceRollN(set, i, j, n)
+                if(defined){
+                    console.log(defined)
+                }
+            }
+        }
+    }
+
+    _sliceWrapN(n){
+        var set = this.setStr
+        for(var i=0; i<=this.setStr.length; i++){
+            for(var j=i; j<=this.setStr.length; j++){
+                var defined = this.sliceWrapN(set, i, j, n)
                 if(defined){
                     console.log(defined)
                 }
@@ -339,13 +367,13 @@ class Test{
         }
     }
 
-    sliceRoll(set, i, j, n){
+    sliceRoll(set, i, j){
         //returns the entire iterative subset of slices between i and j
         if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
             return
         }
         var recursion = new Recursion()
-        var result = recursion.iterJSlice(set, i, j, n)
+        var result = recursion.iterJSlice(set, i, j)
         this.sliceRollValidate(result, i, j, set)
         
         return result
@@ -366,6 +394,42 @@ class Test{
         }
     }
 
+    sliceRollN(set, i, j, n){
+        //returns the entire iterative subset of slices between i and j
+        if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
+            return
+        }
+        var recursion = new Recursion()
+        var result = recursion.iterJSlice(set, i, j, n)
+        this.sliceRollNValidate(result, i, j, set, n)
+        return result
+    }
+
+    sliceRollNValidate(result, i, j, set, n){
+        //check to make sure result does not violate 
+        //i'th set char at index result[z]0 
+        if(i==j){
+            assert.equal(result, undefined)
+        }
+        for(var z=0; z<result.length; z++){
+
+        }
+    }
+
+    
+    sliceWrap(set, i, j){
+        //returns the entire iterative subset of slices between i and j
+        if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
+            return
+        }
+        var recursion = new Recursion()
+        var result = recursion.reverseIterJSlice(set, i, j)
+
+        this.sliceWrapValidate(result, i, j, set)
+
+        return result
+    }
+
     sliceWrapValidate(result, i, j, set){
         //check to make sure result does not violate 
         //i'th set char at index result[z]0 
@@ -380,7 +444,7 @@ class Test{
         }
     }
 
-    sliceWrap(set, i, j, n){
+    sliceWrapN(set, i, j, n){
         //returns the entire iterative subset of slices between i and j
         if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
             return
@@ -392,6 +456,19 @@ class Test{
 
         return result
     }
+    
+    sliceWrapNValidate(result, i, j, set, n){
+        //check to make sure result does not violate 
+        //i'th set char at index result[z]0 
+        if(i==j){
+            assert.equal(result, undefined)
+        }
+        for(var z=0; z<result.length; z++){
+
+        }
+    }
+
+    
 }
 
 new Test()
