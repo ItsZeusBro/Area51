@@ -139,8 +139,6 @@ class Test{
         }
     }
 
-
-
     _sliceWrap(set){
         for(var i=0; i<=set.length; i++){
             for(var j=i; j<=set.length; j++){
@@ -213,7 +211,7 @@ class Test{
         console.log('swapInputTest PASS')
     }
 
-    rotateInputTest(set1, set2 i, recursion){
+    rotateInputTest(set1, set2, i, recursion){
         console.log('rotateInputTest ASSERT')
         assert.equal(
                 recursion.rotate(set1,  i)
@@ -225,7 +223,7 @@ class Test{
 
         if(i){
             assert.equal(
-                    recursion.rotate(se1,  -i)
+                    recursion.rotate(set1,  -i)
                 .equals(
                     recursion.rotate(set2, -i)
                 ),
@@ -237,7 +235,8 @@ class Test{
 
     iterJSliceInputTest(set1, set2, i, j, recursion){
         console.log("iterJSliceInputTest ASSERT")
-        assert.equal(
+        if(j>i){
+            assert.equal(
                 recursion.iterJSlice(set1,  i, j)
             .equals(
                 recursion.iterJSlice(set2, i, j)
@@ -245,13 +244,15 @@ class Test{
                 true
         )
 
-        assert.equal(
+            assert.equal(
                 recursion.reverseIterJSlice(set1,  i, j)
             .equals(
                 recursion.reverseIterJSlice(set2, i, j)
             ),
             true  
-        )
+            )
+        }
+        
         console.log("iterJSliceInputTest PASS")
 
     }
@@ -324,7 +325,7 @@ class Test{
     }
 
     _paths(tree){
-        this._validate(this.paths(tree))
+        this._validate(this.paths(tree), tree)
     }
 
     _validate(paths, tree){
