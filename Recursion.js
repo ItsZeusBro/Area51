@@ -32,59 +32,52 @@ export class Recursion{
 
     }
 
-
-
-    iterJSlice(set, i=0, j=1, n=set.length-j+1, array=[]){
-        if(n==0){return}
-        j=j%(set.length+1)
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-
-        if(slice&&slice.length){
-            array.push(slice)
+    sanitize(strOrArr){
+        if(Array.isArray(strOrArr)){
+            strOrArr = strOrArr.join("")
+            return strOrArr
+        }else if(typeof strOrArr === 'string'){
+            return strOrArr
         }else{
-            n+=1
+            throw Error('set must be of type array or string')
         }
+    }
 
+    iterJSlice(strOrArr, i=0, j=1, iter=[]){
+        if(j==strOrArr.length+1){return}
+        strOrArr=this.sanitize(strOrArr)
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){iter.push(slice)}
         j++;
-        this.iterJSlice(set, i, j, n-1, array)
-        return array
+        this.iterJSlice(strOrArr, i, j, iter)
+        return iter
     }
 
-    reverseIterJSlice(set, i=0, j=1, n=j-i+1, array=[]){
-        if(n==0){return}
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-        if(slice&&slice.length){
-            array.push(slice)
-        }
+    reverseIterJSlice(strOrArr, i=0, j=1, iter=[]){
+        if(j==i){return}
+        strOrArr=this.sanitize(strOrArr)
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){iter.push(slice)}
         j--;
-        this.reverseIterJSlice(set, i, j, n-1, array)
-        return array
+        this.reverseIterJSlice(strOrArr, i, j, iter)
+        return iter
     }
 
-    iterJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
+    iterJSliceRotate(strOrArr, i=0, j=1, r=1, n=set.length, array=[]){
         if(n==0){return []}
         var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
+
+        strOrArr=this.sanitize(strOrArr)
+        slice = strOrArr.slice(i, j)
 
         if(slice&&slice.length){
             array.push(slice)
         }
 
-        set = this.rotate(set, r)
+        strOrArr = this.rotate(strOrArr, r)
         j++;
         n--;
-        this.iterJSliceRotate(set, i, j, r, n, array)
+        this.iterJSliceRotate(strOrArr, i, j, r, n, array)
         return array
     }
 
