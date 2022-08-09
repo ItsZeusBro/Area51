@@ -113,24 +113,11 @@ class Test{
         // this._orderedExpandSet()
         // this.inputOutput(5)
         // this._paths()
-        this._sliceRoll()
+        //this._sliceRoll()
         this._sliceWrap()
         //this.experiments()
     }
-    experiments(){
-        for(var i=0; i<100; i++){
-            for(var j=0; j<100; j++){
-                var defined = this.iterJSliceExperiment(this.setStr, i, j)
-                if(defined){
-                    ////console.log("i", i, "j", j)
-                    ////console.log(defined)
-                }
 
-
-            }
-        }
-
-    }
     iterJSliceExperiment(set, i, j){
         var recursion = new Recursion()
         return recursion.iterJSlice(set, i, j)
@@ -155,8 +142,7 @@ class Test{
         var set = this.setStr
         for(var i=0; i<=this.setStr.length; i++){
             for(var j=i+1; j<=this.setStr.length; j++){
-                ////console.log('sliceWrap', i, j, n)
-                ////console.log(this.sliceWrap(set, i, j, n))
+                console.log(this.sliceWrap(set, i, j, n))
             }
         }
     }
@@ -376,6 +362,18 @@ class Test{
         }
     }
 
+    sliceWrapValidate(result, i, j, set){
+        //check to make sure result does not violate 
+        //i'th set char at index result[z]0 
+        console.log(result)
+        console.log(i, j)
+        for(var z=0; z<result.length; z++){
+            assert.equal(result[z][0], set[i], "z:"+z+" i:"+i+ " j:"+j+ " result[z][i]:"+result[z][0]+" set[i]:"+set[i])
+            assert.equal(result[z][0], result[result.length-1][0])
+            assert.equal(true, result[result.length-1].length==1)
+        }
+    }
+
     sliceWrap(set, i, j, n){
         //returns the entire iterative subset of slices between i and j
         if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
@@ -383,14 +381,9 @@ class Test{
         }
         var recursion = new Recursion()
         var result = recursion.reverseIterJSlice(set, i, j, n)
-        for(var z=0; z<result.length; z++){
-            assert.equal(result[z][0], set[i])
-        }
-        if(n){
-            assert.equal(result.length, n)
-        }else{
-            assert.equal(set.length-j+1, result.length)
-        }
+
+        this.sliceWrapValidate(result, i, j, set)
+
         return result
     }
 }

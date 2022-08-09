@@ -40,9 +40,8 @@ export class Recursion{
         return array
     }
 
-    reverseIterJSlice(set, i=0, j=1, n=set.length-j+1, array=[]){
+    reverseIterJSlice(set, i=0, j=1, n=j-i+1, array=[]){
         if(n==0){return}
-        j=j%(set.length+1)
         var slice;
         if(Array.isArray(set)){
             set = set.join("")
@@ -50,8 +49,6 @@ export class Recursion{
         slice = set.slice(i, j)
         if(slice&&slice.length){
             array.push(slice)
-        }else{
-            n+=1
         }
         j--;
         this.reverseIterJSlice(set, i, j, n-1, array)
