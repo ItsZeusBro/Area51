@@ -130,10 +130,8 @@ class Test{
     _sliceRoll(n){
         var set = this.setStr
         for(var i=0; i<this.setStr.length; i++){
-            for(var j=i+1; j<this.setStr.length; j++){
-                ////console.log('sliceRoll', i, j, n)
-                this.sliceRoll(set, i, j, n)
-                ////console.log()
+            for(var j=i; j<this.setStr.length; j++){
+                console.log(this.sliceRoll(set, i, j, n))
             }
         }
     }
@@ -141,7 +139,7 @@ class Test{
     _sliceWrap(n){
         var set = this.setStr
         for(var i=0; i<=this.setStr.length; i++){
-            for(var j=i+1; j<=this.setStr.length; j++){
+            for(var j=i; j<=this.setStr.length; j++){
                 console.log(this.sliceWrap(set, i, j, n))
             }
         }
