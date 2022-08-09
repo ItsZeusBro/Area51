@@ -18,6 +18,20 @@ export class Recursion{
     to(){
 
     }
+    matrix(){
+
+    }
+
+    iterSliceSkip(){
+        //
+    }
+    iterSliceMerge(){
+
+    }
+    iterSliceDiff(){
+
+    }
+
 
 
     iterJSlice(set, i=0, j=1, n=set.length-j+1, array=[]){
@@ -275,6 +289,8 @@ export class Recursion{
         }
         
     }
+
+
 
     swap(a, i, j){
         if((i>a.length-1) || (j>a.length-1)){
