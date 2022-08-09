@@ -113,7 +113,7 @@ class Test{
         // this._orderedExpandSet()
         // this.inputOutput(5)
         // this._paths()
-        //this._sliceRoll()
+        this._sliceRoll()
         this._sliceWrap()
         //this.experiments()
     }
@@ -343,19 +343,13 @@ class Test{
         var recursion = new Recursion()
         var result = recursion.iterJSlice(set, i, j, n)
         this.sliceRollValidate(result, i, j, set)
-        if(n){
-            assert.equal(result.length, n)
-        }else{
-            assert.equal(set.length-j+1, result.length)
-        }
+        
         return result
     }
 
     sliceRollValidate(result, i, j, set){
         //check to make sure result does not violate 
         //i'th set char at index result[z]0 
-        console.log(result)
-        console.log(i, j)
         for(var z=0; z<result.length; z++){
             assert.equal(result[z][0], set[i], "z:"+z+" i:"+i+ " j:"+j+ " result[z][i]:"+result[z][0]+" set[i]:"+set[i])
             assert.equal(result[z], set.slice(i, j+z))
@@ -365,8 +359,7 @@ class Test{
     sliceWrapValidate(result, i, j, set){
         //check to make sure result does not violate 
         //i'th set char at index result[z]0 
-        console.log(result)
-        console.log(i, j)
+
         for(var z=0; z<result.length; z++){
             assert.equal(result[z][0], set[i], "z:"+z+" i:"+i+ " j:"+j+ " result[z][i]:"+result[z][0]+" set[i]:"+set[i])
             assert.equal(result[z][0], result[result.length-1][0])
