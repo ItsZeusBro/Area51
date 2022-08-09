@@ -131,7 +131,10 @@ class Test{
         var set = this.setStr
         for(var i=0; i<this.setStr.length; i++){
             for(var j=i; j<this.setStr.length; j++){
-                console.log(this.sliceRoll(set, i, j, n))
+                var defined = this.sliceRoll(set, i, j, n)
+                if(defined){
+                    console.log(defined)
+                }
             }
         }
     }
@@ -140,7 +143,10 @@ class Test{
         var set = this.setStr
         for(var i=0; i<=this.setStr.length; i++){
             for(var j=i; j<=this.setStr.length; j++){
-                console.log(this.sliceWrap(set, i, j, n))
+                var defined = this.sliceWrap(set, i, j, n)
+                if(defined){
+                    console.log(defined)
+                }
             }
         }
     }
@@ -348,8 +354,14 @@ class Test{
     sliceRollValidate(result, i, j, set){
         //check to make sure result does not violate 
         //i'th set char at index result[z]0 
+        if(i==j){
+            assert.equal(result, undefined)
+        }
         for(var z=0; z<result.length; z++){
+            //asserts that the begining of the result always matches set[i], because we should only roll after set[i]
             assert.equal(result[z][0], set[i], "z:"+z+" i:"+i+ " j:"+j+ " result[z][i]:"+result[z][0]+" set[i]:"+set[i])
+            //asserts that the entire result is equal to the set slice between i, and j+z
+            //if z equals 0, it should just be slice(i, j), z==1 slice(i, j+1) etc...
             assert.equal(result[z], set.slice(i, j+z))
         }
     }
@@ -357,11 +369,14 @@ class Test{
     sliceWrapValidate(result, i, j, set){
         //check to make sure result does not violate 
         //i'th set char at index result[z]0 
-
+        if(i==j){
+            assert.equal(result, undefined)
+        }
         for(var z=0; z<result.length; z++){
             assert.equal(result[z][0], set[i], "z:"+z+" i:"+i+ " j:"+j+ " result[z][i]:"+result[z][0]+" set[i]:"+set[i])
             assert.equal(result[z][0], result[result.length-1][0])
             assert.equal(true, result[result.length-1].length==1)
+            assert.equal(result[z], set.slice(i, j-z))
         }
     }
 
