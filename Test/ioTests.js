@@ -1,108 +1,11 @@
 import { Recursion } from "../Recursion.js";
 import * as assert from "node:assert"
-import * as util from "node:util"
 
 export class ioTests{
-    constructor(){
-        this.setArr = [
-            'a','b','c','d','e','f','g','h','i',
-            'j','k','l','m','n','o','p','q','r',
-            's','t','u','v','w','x','y','z'
-        ]
-        this.setStr = "abcdefghijklmnopqrstuvwxyz"
-        this.tree = {
-            'payload':{
-                '0a':'0a'
-            },
-            '1a':{
-                'payload':{
-                    '1a':'1a'
-                },
-                '1a2a':{
-                    'payload':{
-                        '1a2a':'1a2a'
-                    },
-                    '1a2a3a':{
-                        'payload':{
-                            '1a2a3a':'1a2a3a'
-                        }
-                    }
-                },
-                '1a2b':{
-                    'payload':{
-                        '1a2b':'1a2b'
-                    },
-                    '1a2b3a':{
-                        'payload':{
-                            '1a2b3a':'1a2b3a'
-                        }
-                    }
-                }
-            },
-            '1b':{
-                'payload':{
-                    '1b':'1b'
-                },
-                '1b2a':{
-                    'payload':{
-                        '1b2a':'1b2a'
-                    },
-                    '1b2a3a':{
-                        'payload':{
-                            '1b2a3a':'1b2a3a'
-                        }
-                    }
-                },
-                '1b2b':[   
-                    {
-                        '1b2b3a':[
-                            {
-                                '1b2b3a4a':{
-                                    'payload':{
-                                        '1b2b3a4a':'1b2b3a4a'
-                                    }
-                                }
-                            },
-                            {
-                                '1b2b3a4b':{
-                                    'payload':{
-                                        '1b2b3a4b':'1b2b3a4b'
-                                    }
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        '1b2b3b':{
-                            'payload':{
-                                '1b2b3b':'1b2b3b'
-                            },
-                            '1b2b3b4a':{
-                                'payload':{
-                                    '1b2b3b4a':'1b2b3b4a'
-                                }
-                            },
-                            '1b2b3b4b':{
-                                'payload':{
-                                    '1b2b3b4b':'1b2b3b4b'
-                                }
-                            },
-                            '1b2b3b4c':[
-                                {
-                                    '1b2b3b4c5a':{
-                                        'payload':{
-                                            '1b2b3b4c5a':'1b2b3b4c5a'
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
+    constructor(setArr, setStr, n, tree){
 
-        this.inputOutput(this.setArr, this.setStr, 5)
+
+        this.inputOutput(setArr, setStr, n)
     }
 
     inputOutput(setArr, setStr, x){
