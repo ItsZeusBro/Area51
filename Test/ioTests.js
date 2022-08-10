@@ -7,8 +7,6 @@ export class ioTests{
     }
 
     inputOutput(setArr, setStr, x){
-
-
         var recursion = new Recursion()
         for(var i=0; i<x; i++){
             this.rotateInputTest(setArr, setStr, i, recursion)
@@ -81,14 +79,14 @@ export class ioTests{
               this.every((value, index) => value === arr2[index])
             );
           };
-        console.log("iterJSliceInputTest ASSERT")
+        console.log("iterJSliceInputTest ASSERT", set1, set2, i, j)
         if(j>i){
             assert.equal(
-                    recursion.iterJSlice(set1,  i, j)
+                    recursion.iterJSlice(set2,  i, j)
                 .equals(
-                    recursion.iterJSlice(set2, i, j)
+                    recursion.iterJSlice(set1, i, j)
                 ),
-                    true
+                true
             )
             assert.equal(
                     recursion.reverseIterJSlice(set1,  i, j)
@@ -108,9 +106,9 @@ export class ioTests{
               this.every((value, index) => value === arr2[index])
             );
           };
-        console.log("iterJSliceRotateInputTest ASSERT")
+        console.log("iterJSliceRotateInputTest ASSERT", set1, i, j, r, n)
         assert.equal(
-                recursion.iterJSliceRotate(set2, i, j, r, n).equals(recursion.iterJSliceRotate(set2, i, j, r, n)),
+                recursion.iterJSliceRotate(set1, i, j, r, n).equals(recursion.iterJSliceRotate(set2, i, j, r, n)),
             true
         )
         console.log("iterJSliceRotateInputTest PASS")
