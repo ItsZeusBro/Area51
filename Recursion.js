@@ -266,7 +266,6 @@ export class Recursion{
         }else{
             throw Error("swap expects string or iter")
         }
-
     }
 
     rotate(strOrArr, n=1){
@@ -303,17 +302,27 @@ export class Recursion{
 			||
 				(typeof obj2 !=='object')
 		){
-			return false
+			equal[0]=false
+			return equal[0]
+		}else{
+			if(this.isEqualArr(Object.keys(obj1), Object.keys(obj2), equal)){
+				for(var i=0; i<Object.keys(obj1).length; i++){
+					if(!this.isEqual(obj1[Object.keys(obj1)[i]], obj2[Object.keys(obj2)[i]], equal)){
+						equal[0]=false
+						return equal[0]
+					}
+				}
+				return equal[0]
+			}else{
+				equal[0]=false
+				return equal[0]
+			}
 		}
-		// }else if(){
-		// 	//
-		// }
     }
 
 
 
     isEqualStr(str1, str2, equal=[true]){
-
         if(
 				(!equal[0])
 			||
@@ -344,7 +353,6 @@ export class Recursion{
 		else if(str1[0]==str2[0]){
 			return this.isEqualStr(str1.slice(1), str2.slice(1), equal)
 		}else{
-
 			equal[0]=false
 			return equal[0]
 		}
@@ -367,13 +375,13 @@ export class Recursion{
 			return equal[0]
 		}
     }
+
     isEqualArr(arr1, arr2, equal=[true]){
         if((!equal[0])||(arr1.length!=arr2.length))
 		{
 			equal[0]=false
 			return equal[0]
-		}
-        if((Array.isArray(arr1)&& Array.isArray(arr2))){
+		}else if((Array.isArray(arr1)&& Array.isArray(arr2))){
 			for(var i = 0; i< arr2.length; i++){
 				if(typeof arr1[i]!== typeof arr2[i]){
 					equal[0]=false
@@ -388,6 +396,7 @@ export class Recursion{
             return equal[0]
         }
     }
+
     isEqual(thing1, thing2, equal=[true]){
         if(!equal[0]){
 			return equal[0]
@@ -418,7 +427,6 @@ export class Recursion{
     //but if you dont use a reference variable, its safer to assume false and prove true, but your recursion has to be perfect all the time
     //we choose to assume true, because its easy to short circuit a recursive function upon its falsehood as the first
     //statement of all equality recursive functions
-
 }
 
 var recursion = new Recursion()
@@ -435,7 +443,7 @@ console.log(recursion.isEqual([1, 2, 3, 4], [1, 2, 3]))
 console.log(recursion.isEqual([1, 2, 3], [1, 2, 3]))
 console.log(recursion.isEqual(["hello", "world"], ["hello", "world"]))
 console.log(recursion.isEqual(["hello", "world"], ["hello", "worlds"]))
-
+console.log(recursion.isEqual({"this":["hello", "world"], "that":"this"}, {"this":["hello", "world"], "that":"this"}))
 
 // console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
 // console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))
