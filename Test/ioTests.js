@@ -1,12 +1,14 @@
 import { Recursion } from "../Recursion.js";
 import * as assert from "node:assert"
 
+
 export class ioTests{
     constructor(setArr, setStr, n, tree){
         this.inputOutput(setArr, setStr, n)
     }
 
     inputOutput(setArr, setStr, x){
+		console.log("INPUT OUTPUT TEST")
         var recursion = new Recursion()
         for(var i=0; i<x; i++){
             this.rotateInputTest(setArr, setStr, i, recursion)
@@ -24,50 +26,24 @@ export class ioTests{
                 }
             }
         }
+		console.log("INPUTOUTPUT TESTS PASSED")
+
     }
     
     swapInputTest(set1, set2, i, j, recursion){
-        Array.prototype.equals = function(arr2) {
-            return (
-              this.length === arr2.length &&
-              this.every((value, index) => value === arr2[index])
-            );
-          };
         console.log('swapInputTest ASSERT')
-        assert.equal(
-                recursion.swap(set1,  i, j)
-            .equals(
-                recursion.swap(set2, i, j)
-            ),
-            true    
-        )
+		console.log(set1, set2)
+        assert.equal(recursion.isEqual(recursion.swap(set1,  i, j), recursion.swap(set2, i, j)), true)
         console.log('swapInputTest PASS')
     }
     
     rotateInputTest(set1, set2, i, recursion){
-        Array.prototype.equals = function(arr2) {
-            return (
-              this.length === arr2.length &&
-              this.every((value, index) => value === arr2[index])
-            );
-          };
+
         console.log('rotateInputTest ASSERT')
-        assert.equal(
-                recursion.rotate(set1,  i)
-            .equals(
-                recursion.rotate(set2, i)
-            ),
-            true  
-        )
+        assert.equal(recursion.isEqual(recursion.rotate(set1,  i), recursion.rotate(set2, i)), true)
 
         if(i){
-            assert.equal(
-                    recursion.rotate(set1,  -i)
-                .equals(
-                    recursion.rotate(set2, -i)
-                ),
-                true  
-            )
+            assert.equal(recursion.isEqual(recursion.rotate(set1,  -i), recursion.rotate(set2, -i)), true)
         }
         console.log('rotateInputTest PASS')
     }
@@ -76,96 +52,30 @@ export class ioTests{
         
         console.log("iterJSliceInputTest ASSERT", set1, set2, i, j)
         if(j>i){
-            assert.equal(
-                    recursion.iterJSlice(set2,  i, j)
-                .equals(
-                    recursion.iterJSlice(set1, i, j)
-                ),
-                true
-            )
-            assert.equal(
-                    recursion.reverseIterJSlice(set1,  i, j)
-                .equals(
-                    recursion.reverseIterJSlice(set2, i, j)
-                ),
-                true  
-            )
+            assert.equal(recursion.isEqual(recursion.iterJSlice(set2,  i, j), recursion.iterJSlice(set1, i, j)), true)
+            assert.equal(recursion.isEqual(recursion.reverseIterJSlice(set1,  i, j), recursion.reverseIterJSlice(set2, i, j)), true)
         }
         console.log("iterJSliceInputTest PASS")
     }
     
     iterJSliceRotateInputTest(set1, set2, i, j, r, n, recursion){
-        Array.prototype.equals = function(arr2) {
-            return (
-              this.length === arr2.length &&
-              this.every((value, index) => value === arr2[index])
-            );
-          };
         console.log("iterJSliceRotateInputTest ASSERT", set1, i, j, r, n)
-        assert.equal(
-                recursion.iterJSliceRotate(set1, i, j, r, n).equals(recursion.iterJSliceRotate(set2, i, j, r, n)),
-            true
-        )
+        assert.equal(recursion.isEqual(recursion.iterJSliceRotate(set1, i, j, r, n), recursion.iterJSliceRotate(set2, i, j, r, n)), true)
         console.log("iterJSliceRotateInputTest PASS")
     }
     
     iterIJSliceRotateInputTest(set1, set2, i, j, r, n, recursion){
-        Array.prototype.equals = function(arr2) {
-            return (
-              this.length === arr2.length &&
-              this.every((value, index) => value === arr2[index])
-            );
-          };
         console.log("iterIJSliceRotateInputTest ASSERT")
-        assert.equal(
-                recursion.iterIJSliceRotate(set1,  i, j, r, n)
-            .equals(
-                recursion.iterIJSliceRotate(set2, i, j, r, n)
-            ),
-            true
-        )
-
-        assert.equal(
-                recursion.reverseIterIJSliceRotate(set1,  i, j, r, n)
-            .equals(
-                recursion.reverseIterIJSliceRotate(set2, i, j, r, n)
-            ),
-            true
-        )
+        assert.equal(recursion.isEqual(recursion.iterIJSliceRotate(set1,  i, j, r, n),recursion.iterIJSliceRotate(set2, i, j, r, n)), true)
+        assert.equal(recursion.isEqual(recursion.reverseIterIJSliceRotate(set1,  i, j, r, n), recursion.reverseIterIJSliceRotate(set2, i, j, r, n)), true)
         console.log("iterIJSliceRotateInputTest PASS")
     }
     
     iterIJSliceRotateSwapInputTest(set1, set2, i, j, r, n, s, recursion){
-        Array.prototype.equals = function(arr2) {
-            return (
-              this.length === arr2.length &&
-              this.every((value, index) => value === arr2[index])
-            );
-          };
         console.log("iterIJSliceRotateSwapInputTest ASSERT")
-        assert.equal(
-                recursion.iterIJSliceRotateSwap(set1,  i, j, r, n, s)
-            .equals(
-                recursion.iterIJSliceRotateSwap(set2, i, j, r, n, s)
-            ),
-            true
-        )
-    
-        assert.equal(
-                recursion.iterJSliceRotateSwap(set1,  i, j, r, n, s)
-            .equals(
-                recursion.iterJSliceRotateSwap(set2, i, j, r, n, s)
-            ),
-            true
-        )
-    
-        assert.equal(
-                recursion.iterIJSSliceRotateSwap(set1,  i, j, r, n, s)
-            .equals(
-                recursion.iterIJSSliceRotateSwap(set2, i, j, r, n, s)
-            ),
-            true
-        )
+        assert.equal(recursion.isEqual(recursion.iterIJSliceRotateSwap(set1,  i, j, r, n, s), recursion.iterIJSliceRotateSwap(set2, i, j, r, n, s)), true)
+        assert.equal(recursion.isEqual(recursion.iterJSliceRotateSwap(set1,  i, j, r, n, s), recursion.iterJSliceRotateSwap(set2, i, j, r, n, s)), true)
+        assert.equal(recursion.isEqual(recursion.iterIJSSliceRotateSwap(set1,  i, j, r, n, s), recursion.iterIJSSliceRotateSwap(set2, i, j, r, n, s)), true)
         console.log("iterIJSliceRotateSwapInputTest PASS")
     }
 

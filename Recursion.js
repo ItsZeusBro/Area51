@@ -246,29 +246,21 @@ export class Recursion{
 
 
     swap(a, i, j){
+		a = this.sanitize(a)
         if(
 				(i>a.length-1) 
 			|| 
 				(j>a.length-1)){
             return a.slice()
         }
-        if(Array.isArray(a)){
-            var b = a.slice()
-            const tmp = b[i]
-            b[i] = b[j]
-            b[j] = tmp
-            if(!b){return []}
-            return b
-        }else if(typeof a === 'string'){
-            var b = a.slice().split("")
-            const tmp = b[i]
-            b[i] = b[j]
-            b[j] = tmp
-            if(!b){return []}
-            return b.join("")
-        }else{
-            throw Error("swap expects string or iter")
-        }
+
+		var b = a.slice()
+		const tmp = b[i]
+		b[i] = b[j]
+		b[j] = tmp
+		if(!b){return []}
+		return b
+        
     }
 
     rotate(strOrArr, n=1){
@@ -437,3 +429,7 @@ export class Recursion{
     //we choose to assume true, because its easy to short circuit a recursive function upon its falsehood as the first
     //statement of all equality recursive functions
 }
+
+
+console.log(new Recursion().swap('0123456789', 1, 4))
+console.log(new Recursion().swap('0123456789', 1, 4))
