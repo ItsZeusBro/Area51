@@ -296,25 +296,24 @@ export class Recursion{
     }
 
     isEqualObj(obj1, obj2, equal=[true]){
-        if(!equal[0]){return false}
-        //try to invalidate the equality of two objects
+		if(
+				(!equal[0])
+			||
+				(typeof obj1 !=='object')
+			||
+				(typeof obj2 !=='object')
+		){
+			return false
+		}
+		// }else if(){
+		// 	//
+		// }
     }
 
-    isEqualArr(arr1, arr2, equal=[true]){
-        if(!equal[0]){return false}
-        if((Array.isArray(arr1)&& Array.isArray(arr2))){
-            for(var i = 0; i<arr1.length; i++){
-                for(var j = 0; j< arr2.length; j++){
-                    return this.isEqual(arr1[i], arr2[j])
-                }
-            }
-        }else{
-            equal[0]=false
-            return false
-        }
-    }
+
 
     isEqualStr(str1, str2, equal=[true]){
+
         if(
 				(!equal[0])
 			||
@@ -322,7 +321,8 @@ export class Recursion{
 			||
 				(typeof str2 !=='string')
 		){
-			return false
+			equal[0]=false
+			return equal[0]
 		}
 		else if(
 				(
@@ -339,13 +339,14 @@ export class Recursion{
 						str2.length==0
 				)
 		){
-			return true
+			return equal[0]
 		}
 		else if(str1[0]==str2[0]){
-			return this.isEqual(str1.slice(1), str2.slice(1), equal)
+			return this.isEqualStr(str1.slice(1), str2.slice(1), equal)
 		}else{
+
 			equal[0]=false
-			return false
+			return equal[0]
 		}
     }
 
@@ -357,33 +358,57 @@ export class Recursion{
 			||
 				(typeof num2 !=='number')
 		){
-			return false
+			equal[0]=false
+			return equal[0]
 		}else if(num1==num2){
-			return true
+			return equal[0]
 		}else{
 			equal[0]=false
-			return false
+			return equal[0]
 		}
     }
-
-    isEqual(thing1, thing2, equal=[true]){
-        if(!equal[0]){return false}
-        if(typeof thing1 !== typeof thing2){
-            equal[0]=false
-            return
+    isEqualArr(arr1, arr2, equal=[true]){
+        if((!equal[0])||(arr1.length!=arr2.length))
+		{
+			equal[0]=false
+			return equal[0]
+		}
+        if((Array.isArray(arr1)&& Array.isArray(arr2))){
+			for(var i = 0; i< arr2.length; i++){
+				if(typeof arr1[i]!== typeof arr2[i]){
+					equal[0]=false
+					return equal[0]
+				}else{
+					this.isEqual(arr1[i], arr2[i], equal)
+				}
+			}
+			return equal[0]
         }else{
-            if(typeof thing1 === 'object'){
-                return this.isEqualObj(thing1, thing2, equal)
-            }else if(Array.isArray(thing1)){
+            equal[0]=false
+            return equal[0]
+        }
+    }
+    isEqual(thing1, thing2, equal=[true]){
+        if(!equal[0]){
+			return equal[0]
+		}else if(typeof thing1 !== typeof thing2){
+            equal[0]=false
+            return equal[0]
+        }else{
+			if(Array.isArray(thing1)){
                 return this.isEqualArr(thing1, thing2, equal)
             }else if(typeof thing1 === 'number'){
                 return this.isEqualNumber(thing1, thing2, equal)
             }else if(typeof thing1 === 'string'){
                 return this.isEqualStr(thing1, thing2, equal)
+            }else if(typeof thing1 === 'object'){
+                return this.isEqualObj(thing1, thing2, equal)
             }else{
+				console.log("here")
                 //other types for the future
             }
         }
+		console.log("should never run")
     }
     //The problem with equality recursive functions:
     //if everything is assumed true and proven false, you may have edge cases that turn out to be true when they are not
@@ -397,13 +422,20 @@ export class Recursion{
 }
 
 var recursion = new Recursion()
-console.log(recursion.isEqualStr('hello', 'world'))
-console.log(recursion.isEqualStr('hello', 'hello'))
-console.log(recursion.isEqualStr('sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj', 'sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj'))
-console.log(recursion.isEqualStr('', ''))
+// console.log(recursion.isEqualStr('hello', 'world'))
+// console.log(recursion.isEqualStr('hello', 'hello'))
+// console.log(recursion.isEqualStr('sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj', 'sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj'))
+// console.log(recursion.isEqualStr('', ''))
 
-console.log(recursion.isEqualNumber(NaN, NaN))
-console.log(recursion.isEqualNumber(100, 100))
+// console.log(recursion.isEqualNumber(NaN, NaN))
+// console.log(recursion.isEqualNumber(100, 100))
+
+// console.log(recursion.isEqual(1, 2))
+console.log(recursion.isEqual([1, 2, 3, 4], [1, 2, 3]))
+console.log(recursion.isEqual([1, 2, 3], [1, 2, 3]))
+console.log(recursion.isEqual(["hello", "world"], ["hello", "world"]))
+console.log(recursion.isEqual(["hello", "world"], ["hello", "worlds"]))
+
 
 // console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
 // console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))
