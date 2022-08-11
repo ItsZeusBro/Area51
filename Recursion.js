@@ -350,8 +350,20 @@ export class Recursion{
     }
 
     isEqualNumber(num1, num2, equal=[true]){
-        if(!equal[0]){return false}
-
+        if(
+				(!equal[0])
+			||
+				(typeof num1 !=='number')
+			||
+				(typeof num2 !=='number')
+		){
+			return false
+		}else if(num1==num2){
+			return true
+		}else{
+			equal[0]=false
+			return false
+		}
     }
 
     isEqual(thing1, thing2, equal=[true]){
@@ -390,6 +402,8 @@ console.log(recursion.isEqualStr('hello', 'hello'))
 console.log(recursion.isEqualStr('sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj', 'sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj'))
 console.log(recursion.isEqualStr('', ''))
 
+console.log(recursion.isEqualNumber(NaN, NaN))
+console.log(recursion.isEqualNumber(100, 100))
 
 // console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
 // console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))
