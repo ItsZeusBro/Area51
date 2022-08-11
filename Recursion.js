@@ -246,7 +246,10 @@ export class Recursion{
 
 
     swap(a, i, j){
-        if((i>a.length-1) || (j>a.length-1)){
+        if(
+				(i>a.length-1) 
+			|| 
+				(j>a.length-1)){
             return a.slice()
         }
         if(Array.isArray(a)){
@@ -377,7 +380,10 @@ export class Recursion{
     }
 
     isEqualArr(arr1, arr2, equal=[true]){
-        if((!equal[0])||(arr1.length!=arr2.length))
+        if(
+				(!equal[0])
+			||
+				(arr1.length!=arr2.length))
 		{
 			equal[0]=false
 			return equal[0]
@@ -412,7 +418,10 @@ export class Recursion{
                 return this.isEqualStr(thing1, thing2, equal)
             }else if(typeof thing1 === 'object'){
                 return this.isEqualObj(thing1, thing2, equal)
-            }else{
+            }else if(!thing1 && !thing2){
+				return equal[0]
+			}
+			else{
 				console.log("here")
                 //other types for the future
             }
@@ -428,22 +437,3 @@ export class Recursion{
     //we choose to assume true, because its easy to short circuit a recursive function upon its falsehood as the first
     //statement of all equality recursive functions
 }
-
-var recursion = new Recursion()
-// console.log(recursion.isEqualStr('hello', 'world'))
-// console.log(recursion.isEqualStr('hello', 'hello'))
-// console.log(recursion.isEqualStr('sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj', 'sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj'))
-// console.log(recursion.isEqualStr('', ''))
-
-// console.log(recursion.isEqualNumber(NaN, NaN))
-// console.log(recursion.isEqualNumber(100, 100))
-
-// console.log(recursion.isEqual(1, 2))
-console.log(recursion.isEqual([1, 2, 3, 4], [1, 2, 3]))
-console.log(recursion.isEqual([1, 2, 3], [1, 2, 3]))
-console.log(recursion.isEqual(["hello", "world"], ["hello", "world"]))
-console.log(recursion.isEqual(["hello", "world"], ["hello", "worlds"]))
-console.log(recursion.isEqual({"this":[{'hello':'world'}], "that":"this"}, {"this":[{'hello':'world'}], "that":"this"}))
-
-// console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
-// console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))

@@ -3,6 +3,7 @@ import { ioTests } from "./ioTests.js"
 import { sliceWrapTests } from "./sliceWrapTests.js";
 import { sliceRollTests } from "./sliceRollTests.js"
 import { treeTests } from "./treeTests.js";
+import { comparatorTests } from './comparatorTests.js'
 import * as assert from "node:assert"
 import * as util from "node:util"
 
@@ -116,6 +117,7 @@ class Test{
         new sliceRollTests(setStr, 100)
         new sliceWrapTests(setStr, 100)
         new treeTests(tree)
+		new 
     }
 
     log(obj){
