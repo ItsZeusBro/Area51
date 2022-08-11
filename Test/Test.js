@@ -111,7 +111,8 @@ class Test{
     }
 
     tests(setArr, setStr, tree){
-        //new ioTests(setArr, setStr, 5)
+        new ioTests(setArr, setStr, 5)
+        //THESE WORK
         new sliceRollTests(setStr, 100)
         new sliceWrapTests(setStr, 100)
         new treeTests(tree)

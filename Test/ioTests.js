@@ -73,12 +73,7 @@ export class ioTests{
     }
     
     iterJSliceInputTest(set1, set2, i, j, recursion){
-        Array.prototype.equals = function(arr2) {
-            return (
-              this.length === arr2.length &&
-              this.every((value, index) => value === arr2[index])
-            );
-          };
+        
         console.log("iterJSliceInputTest ASSERT", set1, set2, i, j)
         if(j>i){
             assert.equal(
@@ -173,4 +168,6 @@ export class ioTests{
         )
         console.log("iterIJSliceRotateSwapInputTest PASS")
     }
+
+
 }

@@ -1,4 +1,6 @@
-//A set of tools for making recursion more useful by anticipating what it will need
+//A strOrArr of tools for making recursion more useful by anticipating what it will need
+
+import { type } from "node:os"
 
 export class Recursion{
 
@@ -34,17 +36,19 @@ export class Recursion{
 
     sanitize(strOrArr){
         if(Array.isArray(strOrArr)){
-            strOrArr = strOrArr.join("")
             return strOrArr
         }else if(typeof strOrArr === 'string'){
-            return strOrArr
+            return Array.from(strOrArr).slice()
         }else{
-            throw Error('set must be of type array or string')
+            throw Error('strOrArr must be of type iter or string')
         }
     }
 
     iterJSlice(strOrArr, i=0, j=1, iter=[]){
-        if(j==strOrArr.length+1){return}
+        if(j<=i){return iter}
+        if(j==strOrArr.length+1){
+            return iter
+        }
         strOrArr=this.sanitize(strOrArr)
         var slice = strOrArr.slice(i, j)
         if(slice && slice.length){iter.push(slice)}
@@ -54,7 +58,7 @@ export class Recursion{
     }
 
     reverseIterJSlice(strOrArr, i=0, j=1, iter=[]){
-        if(j==i){return}
+        if(j<=i){return iter}
         strOrArr=this.sanitize(strOrArr)
         var slice = strOrArr.slice(i, j)
         if(slice && slice.length){iter.push(slice)}
@@ -63,137 +67,93 @@ export class Recursion{
         return iter
     }
 
-    iterJSliceRotate(strOrArr, i=0, j=1, r=1, n=set.length, array=[]){
-        if(n==0){return []}
-        var slice;
-
+    iterJSliceRotate(strOrArr, i=0, j=1, r=1, n=strOrArr.length, iter=[]){
+        if(n==0){return iter}
+        if(j<=i){return iter}
         strOrArr=this.sanitize(strOrArr)
-        slice = strOrArr.slice(i, j)
-
-        if(slice&&slice.length){
-            array.push(slice)
-        }
-
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){iter.push(slice)}
         strOrArr = this.rotate(strOrArr, r)
         j++;
         n--;
-        this.iterJSliceRotate(strOrArr, i, j, r, n, array)
-        return array
+        this.iterJSliceRotate(strOrArr, i, j, r, n, iter);
+        return iter;
     }
 
-    iterIJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
-        if(n==0){return []}
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-
-        if(slice&&slice.length){
-            array.push(slice)
-        }
-
-        set = this.rotate(set, r)
+    iterIJSliceRotate(strOrArr, i=0, j=1, r=1, n=strOrArr.length, iter=[]){
+        if(n==0){return iter}
+        if(j<=i){return iter}
+        strOrArr=this.sanitize(strOrArr)
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){iter.push(slice)}
+        strOrArr = this.rotate(strOrArr, r)
         i++
         j++;
         n--;
-        this.iterIJSliceRotate(set, i, j, r, n, array)
-        return array
+        this.iterIJSliceRotate(strOrArr, i, j, r, n, iter)
+        return iter
     }
 
-    reverseIterIJSliceRotate(set, i=0, j=1, r=1, n=set.length, array=[]){
-        if(n==0){return []}
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-
-        if(slice&&slice.length){
-            array.push(slice)
-        }
-
-        set = this.rotate(set, r)
+    reverseIterIJSliceRotate(strOrArr, i=0, j=1, r=1, n=strOrArr.length, iter=[]){
+        if(n==0){return iter}
+        if(j<=i){return iter}
+        strOrArr=this.sanitize(strOrArr)
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){iter.push(slice)}
+        strOrArr = this.rotate(strOrArr, r)
         i--;
         j--;
         n--;
-        this.iterIJSliceRotate(set, i, j, r, n, array)
-        return array
+        this.reverseIterIJSliceRotate(strOrArr, i, j, r, n, iter)
+        return iter
     }
 
-    iterJSliceRotateSwap(set,  i=0, j=1, r=1, n=set.length, s=1, array=[]){
-        if(j==set.length){
-            j=j-i;
-            i=0;
-        }
-        if(n==0){return []}
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-        
-        if(slice&&slice.length){
-            array.push(slice)
-        }
-
-        set = this.rotate(set, r)
-        set = this.swap(set, i, s)
+    iterJSliceRotateSwap(strOrArr,  i=0, j=1, r=1, n=strOrArr.length, s=1, iter=[]){
+        if(j<=i){return iter}
+        if(j==strOrArr.length){ j=j-i; i=0;}
+        if(n==0){return iter}
+        strOrArr=this.sanitize(strOrArr)
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){iter.push(slice)}
+        strOrArr = this.rotate(strOrArr, r)
+        strOrArr = this.swap(strOrArr, i, s)
         j++;
         n--;
-        this.iterJSliceRotateSwap(set, i, j, r, n, s, array)
-        return array
+        this.iterJSliceRotateSwap(strOrArr, i, j, r, n, s, iter)
+        return iter
     }
 
-    iterIJSliceRotateSwap(set,  i=0, j=1, r=1, n=set.length, s=1, array=[]){
-        if(j==set.length){
-            j=j-i;
-            i=0;
-        }
-        if(n==0){return []}
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-
-        if(slice&&slice.length){
-            array.push(slice)
-        }
-
-        set = this.rotate(set, r)
-        set = this.swap(set, i, s)
+    iterIJSliceRotateSwap(strOrArr,  i=0, j=1, r=1, n=strOrArr.length, s=1, iter=[]){
+        if(j<=i){return iter}
+        if(j==strOrArr.length){ j=j-i; i=0; }
+        if(n==0){return iter}
+        strOrArr=this.sanitize(strOrArr)
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){ iter.push(slice) }
+        strOrArr = this.rotate(strOrArr, r)
+        strOrArr = this.swap(strOrArr, i, s)
         i++;
         j++;
         n--;
-        this.iterIJSliceRotateSwap(set, i, j, r, n, s, array)
-        return array
+        this.iterIJSliceRotateSwap(strOrArr, i, j, r, n, s, iter)
+        return iter
     }
 
-    iterIJSSliceRotateSwap(set, i=0, j=1, r=1, n=set.length, s=1, array=[]){
-        if(j==set.length){
-            j=j-i;
-            i=0;
-        }
-        if(n==0){return []}
-        var slice;
-        if(Array.isArray(set)){
-            set = set.join("")
-        }
-        slice = set.slice(i, j)
-
-        if(slice&&slice.length){
-            array.push(slice)
-        }
-
-        set = this.rotate(set, r)
-        set = this.swap(set, i, s)
+    iterIJSSliceRotateSwap(strOrArr, i=0, j=1, r=1, n=strOrArr.length, s=1, iter=[]){
+        if(j<=i){return iter}
+        if(j==strOrArr.length){ j=j-i; i=0; }
+        if(n==0){return iter}
+        strOrArr=this.sanitize(strOrArr)
+        var slice = strOrArr.slice(i, j)
+        if(slice && slice.length){ iter.push(slice) }
+        strOrArr = this.rotate(strOrArr, r)
+        strOrArr = this.swap(strOrArr, i, s)
         i++;
         j++;
         s++;
         n--;
-        this.iterIJSSliceRotateSwap(set, i, j, r, n, s, array)
-        return array
+        this.iterIJSSliceRotateSwap(strOrArr, i, j, r, n, s, iter)
+        return iter
     }
 
     //this needs a recursive key pattern and a payload key pattern
@@ -259,24 +219,24 @@ export class Recursion{
         return !invalid[0]
     }
 
-    DivSetBaseTree(set, n, tree={}){
-        if(set.length==n){
-            tree[set.slice(0, n)]=set.slice(0, n)
+    DivSetBaseTree(strOrArr, n, tree={}){
+        if(strOrArr.length==n){
+            tree[strOrArr.slice(0, n)]=strOrArr.slice(0, n)
             return
-        }else if(set.length==n-1){
-            tree[set.slice(0, n-1)]=set.slice(0, n-1)
+        }else if(strOrArr.length==n-1){
+            tree[strOrArr.slice(0, n-1)]=strOrArr.slice(0, n-1)
             return
-        }else if(set.length==2){
-            tree[set.slice(0, 2)]=set.slice(0, 2)
-        }else if(set.length==1){
-            tree[set[0]]=set[0]
+        }else if(strOrArr.length==2){
+            tree[strOrArr.slice(0, 2)]=strOrArr.slice(0, 2)
+        }else if(strOrArr.length==1){
+            tree[strOrArr[0]]=strOrArr[0]
             return
-        }else if(set.length==0){
+        }else if(strOrArr.length==0){
             return
         }else{
-            const _n = Math.ceil(set.length / n); 
-            for(var i =0; i<set.length; i+=_n){
-                this.DivSetBaseTree(set.slice(i, _n*(i+1)),n, tree)
+            const _n = Math.ceil(strOrArr.length / n); 
+            for(var i =0; i<strOrArr.length; i+=_n){
+                this.DivSetBaseTree(strOrArr.slice(i, _n*(i+1)),n, tree)
             }  
             return tree
         }
@@ -304,43 +264,97 @@ export class Recursion{
             if(!b){return []}
             return b.join("")
         }else{
-            throw Error("swap expects string or array")
+            throw Error("swap expects string or iter")
         }
 
     }
 
-    rotate(str, n=1){
-        if(str.length==1){
-            return str
+    rotate(strOrArr, n=1){
+        strOrArr=this.sanitize(strOrArr)
+
+        if(strOrArr.length==1){
+            return strOrArr
         }
 
         if(n>=0){
             for(var i = 0; i<n; i++){
-                str = str.slice()
-                if(Array.isArray(str)){
-                    var char = str.shift();
-                    str.push(char)
-    
-                }else{
-                    var char = str[0]
-                    str = str.slice(1)+char
-                }
+                strOrArr = strOrArr.slice()
+                var char = strOrArr.shift();
+                strOrArr.push(char)
             }
-            if(!str){return []}
-            return str
+            if(!strOrArr){return []}
+            return strOrArr
         }else if(n<0){
             for(var i=n; i!=0; i++){
-                str = str.slice()
-                if(Array.isArray(str)){
-                    var chars = str.slice(0, str.length-1)
-                    str = str.slice(-1).concat(chars)
-                }else{
-                    var chars = str.slice(0, str.length-1)
-                    str = str.slice(-1)+chars
-                }
+                strOrArr = strOrArr.slice()
+                var chars = strOrArr.slice(0, strOrArr.length-1)
+                strOrArr = strOrArr.slice(-1).concat(chars)
             }
-            if(!str){return []}
-            return str
+            if(!strOrArr){return []}
+            return strOrArr
         }
     }
+
+    isEqualObj(obj1, obj2, equal=[true]){
+        if(!equal[0]){return false}
+        //try to invalidate the equality of two objects
+    }
+
+    isEqualArr(arr1, arr2, equal=[true]){
+        if(!equal[0]){return false}
+        if((Array.isArray(arr1)&& Array.isArray(arr2))){
+            for(var i = 0; i<arr1.length; i++){
+                for(var j = 0; j< arr2.length; j++){
+                    return this.isEqual(arr1[i], arr2[j])
+                }
+            }
+        }else{
+            equal[0]=false
+            return equal[0]
+        }
+    }
+
+    isEqualStr(str1, str2, equal=[true]){
+        if(!equal[0]){return false}
+
+    }
+
+    isEqualNumber(num1, num2, equal=[true]){
+        if(!equal[0]){return false}
+
+    }
+
+    isEqual(thing1, thing2, equal=[true]){
+        if(!equal[0]){return false}
+        if(typeof thing1 !== typeof thing2){
+            equal[0]=false
+            return equal[0]
+        }else{
+            if(typeof thing1 === 'object'){
+                return this.isEqualObj(thing1, thing2, equal)
+            }else if(Array.isArray(thing1)){
+                return this.isEqualArr(thing1, thing2, equal)
+            }else if(typeof thing1 === 'number'){
+                return this.isEqualNumber(thing1, thing2, equal)
+            }else if(typeof thing1 === 'string'){
+                return this.isEqualStr(thing1, thing2, equal)
+            }else{
+                //other types for the future
+            }
+        }
+    }
+    //The problem with equality recursive functions:
+    //if everything is assumed true and proven false, you may have edge cases that turn out to be true when they are not
+    //if everything is assumed false and proven true, and you use the same reference variable for reporting true, 
+    //then if one deep thing is true, it might slip through and be generalized upon
+    //if you dont use a reference variable, you cant report on the whole state across recursive functions and levels of recursivity
+    //but if you dont use a reference variable, its safer to assume false and prove true, but your recursion has to be perfect all the time
+    //we choose to assume true, because its easy to short circuit a recursive function upon its falsehood as the first
+    //statement of all equality recursive functions
+
 }
+
+var recursion = new Recursion()
+
+// console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
+// console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))
