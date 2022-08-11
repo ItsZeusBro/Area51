@@ -296,7 +296,7 @@ export class Recursion{
     }
 
     isEqualObj(obj1, obj2, equal=[true]){
-        if(!equal[0]){return false}
+        if(!equal[0]){return}
         //try to invalidate the equality of two objects
     }
 
@@ -310,25 +310,31 @@ export class Recursion{
             }
         }else{
             equal[0]=false
-            return equal[0]
+            return
         }
     }
 
     isEqualStr(str1, str2, equal=[true]){
         if(!equal[0]){return false}
-
+		if(str1[0]==str2[0]){
+			this.isEqual(str1.slice(1), str2.slice(1), equal)
+		}else{
+			equal[0]=false
+			return
+		}
+		return true
     }
 
     isEqualNumber(num1, num2, equal=[true]){
-        if(!equal[0]){return false}
+        if(!equal[0]){return}
 
     }
 
     isEqual(thing1, thing2, equal=[true]){
-        if(!equal[0]){return false}
+        if(!equal[0]){return}
         if(typeof thing1 !== typeof thing2){
             equal[0]=false
-            return equal[0]
+            return
         }else{
             if(typeof thing1 === 'object'){
                 return this.isEqualObj(thing1, thing2, equal)
@@ -355,6 +361,6 @@ export class Recursion{
 }
 
 var recursion = new Recursion()
-
+recursion()
 // console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
 // console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))
