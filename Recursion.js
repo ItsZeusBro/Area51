@@ -296,7 +296,7 @@ export class Recursion{
     }
 
     isEqualObj(obj1, obj2, equal=[true]){
-        if(!equal[0]){return}
+        if(!equal[0]){return false}
         //try to invalidate the equality of two objects
     }
 
@@ -310,28 +310,52 @@ export class Recursion{
             }
         }else{
             equal[0]=false
-            return
+            return false
         }
     }
 
     isEqualStr(str1, str2, equal=[true]){
-        if(!equal[0]){return false}
-		if(str1[0]==str2[0]){
-			this.isEqual(str1.slice(1), str2.slice(1), equal)
+        if(
+				(!equal[0])
+			||
+				(typeof str1 !=='string')
+			||
+				(typeof str2 !=='string')
+		){
+			return false
+		}
+		else if(
+				(
+						str1.length==1
+					&&
+						str2.length==1
+					&&
+						str1[0]==str2[0]
+				)
+			||
+				(
+						str1.length==0
+					&&
+						str2.length==0
+				)
+		){
+			return true
+		}
+		else if(str1[0]==str2[0]){
+			return this.isEqual(str1.slice(1), str2.slice(1), equal)
 		}else{
 			equal[0]=false
-			return
+			return false
 		}
-		return true
     }
 
     isEqualNumber(num1, num2, equal=[true]){
-        if(!equal[0]){return}
+        if(!equal[0]){return false}
 
     }
 
     isEqual(thing1, thing2, equal=[true]){
-        if(!equal[0]){return}
+        if(!equal[0]){return false}
         if(typeof thing1 !== typeof thing2){
             equal[0]=false
             return
@@ -361,6 +385,11 @@ export class Recursion{
 }
 
 var recursion = new Recursion()
-recursion()
+console.log(recursion.isEqualStr('hello', 'world'))
+console.log(recursion.isEqualStr('hello', 'hello'))
+console.log(recursion.isEqualStr('sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj', 'sdlkfjsdlkaglsjkghaskdjghsakjghnsdkaj'))
+console.log(recursion.isEqualStr('', ''))
+
+
 // console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
 // console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))
