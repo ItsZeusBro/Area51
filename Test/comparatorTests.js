@@ -1,13 +1,15 @@
 import { Recursion } from "../Recursion.js"
 import { RandGen } from "./RandGen.js"
 import * as assert from "node:assert"
+import * as util from "node:util"
 
 export class ComparatorTests{
 	constructor(){
 		this.testArrays()
-		this.testNumbers()
-		this.testStrings()
 		this.testObjects()
+		this.testNumber()
+		this.testString()
+		this.testEquals()
 	}
 
 	testArrays(){
@@ -17,39 +19,83 @@ export class ComparatorTests{
 
 	}
 
-	testNumbers(){
-
-	}
-
-	testStrings(){
-
-	}
 
 	testObjects(){
-
+		for(var i = 0; i<1000; i++){
+			this.testObject()
+		}
 	}
 
 	testArray(){
+		console.log("TEST ARRAY")
 		var recursion = new Recursion()
 		var array1 = new RandGen().randArr(20)
 		var array2 = new RandGen().randArr(20)
-		console.log(array1, array2)
 		assert.equal(recursion.isEqualArr(array1.slice(), array1.slice()), true)
 		assert.equal(recursion.isEqualArr(array1.slice(), array2.slice()), false)
+		console.log("TEST ARRAY PASSED")
 
 	}
-	testNumber(testNumber){
-		var recursion = new Recursion()
-		recursion.isEqual(testNumber, testNumber)
 
-	}
-	testString(testString){
+	testObject(){
+		console.log("TEST OBJ")
 		var recursion = new Recursion()
-		recursion.isEqual(testString.slice(), testString.slice())
+		var obj1 = new RandGen().randObj(20)
+		var obj2 = new RandGen().randObj(20)
+		assert.equal(recursion.isEqualObj(obj1, obj1), true)
+		assert.equal(recursion.isEqualObj(obj1, obj2), false)
+		console.log("TEST OBJ PASSED")
 	}
-	testObject(testObject){
+
+	testNumber(){
+		console.log("TEST NUMBER")
 		var recursion = new Recursion()
+		var num1 = 1234
+		var num2 = 2345
+		assert.equal(recursion.isEqualNumber(num1, num1), true)
+		assert.equal(recursion.isEqualNumber(num1, num2), false)		
+		console.log("TEST NUMBER PASSED")
 	}
+	testString(){
+		console.log("TEST STRING")
+		var recursion = new Recursion()
+		var str1 = "kldsjfhasklgjhsdglaksdjgalukierhtfglkaszjgnaslgkuhaerg"
+		var str2 = "kldsjfhasklgjhsdglaksdjgalukierhtfglkaszjgnaslgkuhaergkldsjfhasklgjhsdglaksdjgalukierhtfglkaszjgnaslgkuhaerg"
+		assert.equal(recursion.isEqualStr(str1, str1), true)
+		assert.equal(recursion.isEqualStr(str1, str2), false)		
+		console.log("TEST STRING PASSED")
+	}
+	testEquals(){
+		console.log("TEST EQUAL")
+		var recursion = new Recursion()
+		var array1 = new RandGen().randArr(20)
+		var array2 = new RandGen().randArr(20)
+		assert.equal(recursion.isEqual(array1.slice(), array1.slice()), true)
+		assert.equal(recursion.isEqual(array1.slice(), array2.slice()), false)
+
+		var obj1 = new RandGen().randObj(20)
+		var obj2 = new RandGen().randObj(20)
+		assert.equal(recursion.isEqual(obj1, obj1), true)
+		assert.equal(recursion.isEqual(obj1, obj2), false)
+
+		var num1 = 1234
+		var num2 = 2345
+		assert.equal(recursion.isEqual(num1, num1), true)
+		assert.equal(recursion.isEqual(num1, num2), false)	
+
+
+		var str1 = "kldsjfhasklgjhsdglaksdjgalukierhtfglkaszjgnaslgkuhaerg"
+		var str2 = "kldsjfhasklgjhsdglaksdjgalukierhtfglkaszjgnaslgkuhaergkldsjfhasklgjhsdglaksdjgalukierhtfglkaszjgnaslgkuhaerg"
+		assert.equal(recursion.isEqual(str1, str1), true)
+		assert.equal(recursion.isEqual(str1, str2), false)		
+		console.log("TEST EQUAL PASSED")
+	}
+	log(obj){
+        if(obj){
+            console.log(util.inspect(obj, false, null, true))
+        }
+    }
+
 }
 
 new ComparatorTests()

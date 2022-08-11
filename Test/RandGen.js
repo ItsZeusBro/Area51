@@ -2,19 +2,40 @@ import * as util from "node:util"
 import * as assert from "node:assert"
 export class RandGen{
     randStr(){return this.genStr(this.randRange(0, 3))}
-    randInt(){return this.randRange(0,20)}
+    randInt(){return this.randRange(0,5)}
     randArr(n){var arr=[]; for(var i=0;i<n;i++){arr.push(this.rand())}; return arr}
-    rand(){
+    rand(n){
         return eval(this.sample([
             'this.randIntArr', 'this.randStr', 'this.randInt', 'this.randStrArr',
             'this.randObj', 'this.randObjArr'
-        ])+'()')
+        ])+'(n)')
     }
     randIntArr(n=this.randInt()){var arr=[]; for(var i=0;i<n;i++){arr.push(this.randInt())}; return arr}
     randEnc(){return "utf8"}
     randEncArr(){return ['utf8']}
     randStrArr(n=this.randInt()){var arr=[]; for(var i=0;i<n;i++){arr.push(this.randStr())}; return arr}
-    randObj(n=this.randInt()){if(n){return {[this.randStr()]:this.randObj(n-1)}}};
+    randObj(n=this.randInt()){
+		if(n){
+			return {
+				[this.randStr()]:this.randObj(n-1)
+			}
+		}
+	};
+	randObj2(n=this.randInt()){
+		if(n){
+			if(this.randMod10()){
+				return {
+					[this.randStr()]:this.randObj2(n-1)
+				}
+			}else{
+				return [
+					this.randObj2(n-1),
+					this.randInt(),
+					this.randStr()
+				]
+			}
+		}
+	}
     randObjArr(n=this.randInt()){var arr=[]; for(var i=0;i<n;i++){arr.push(this.randObj())}; return arr}
     randSelection(bag){
         return bag[Math.floor(Math.random() * bag.length)];
