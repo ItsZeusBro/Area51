@@ -443,7 +443,7 @@ console.log(recursion.isEqual([1, 2, 3, 4], [1, 2, 3]))
 console.log(recursion.isEqual([1, 2, 3], [1, 2, 3]))
 console.log(recursion.isEqual(["hello", "world"], ["hello", "world"]))
 console.log(recursion.isEqual(["hello", "world"], ["hello", "worlds"]))
-console.log(recursion.isEqual({"this":["hello", "world"], "that":"this"}, {"this":["hello", "world"], "that":"this"}))
+console.log(recursion.isEqual({"this":[{'hello':'world'}], "that":"this"}, {"this":[{'hello':'world'}], "that":"this"}))
 
 // console.log(recursion.iterJSliceRotate('123456789', 0, 4, 2))
 // console.log(recursion.iterJSliceRotate(['1', '2', '3', '4', '5', '6', '7', '8', '9'], 0, 4, 2))
