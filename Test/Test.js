@@ -104,24 +104,21 @@ class Test{
                 ]
             }
         }
-
         this.tests(this.setArr, this.setStr, this.tree)
-        
     }
 
     tests(setArr, setStr, tree){
-        new ioTests(setArr, setStr, 5)
-        new IteratorTests(setStr)
+        //new ioTests(setArr, setStr, 5)
+        //new IteratorTests(setStr)
         new TreeTests(tree)
-		new ComparatorTests()
+		//new ComparatorTests()
     }
 
     log(obj){
         if(obj){
-            util.inspect(obj, false, null, true)
+            console.log(util.inspect(obj, false, null, true))
         }
     }
-
 }
 
 new Test()

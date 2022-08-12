@@ -11,13 +11,11 @@ export class Recursion{
 
     from(object){
         //returns a destructured object as an object tree
-        //so no matter what the object is, we should know how to destructure it using brass tacks analysis
+        //so no matter what the object is, we should know how to destructure it
     }
 
     to(){
 
     }
-    matrix(){
 
-    }
 }

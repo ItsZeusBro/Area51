@@ -2,7 +2,11 @@ export class Trees{
     constructor(){
 
     }
-    //this needs a recursive key pattern and a payload key pattern
+    //gives the individual paths of a tree as an array of paths. 
+	//Paths are nothing but arrays of objects that hold the leveled steps in the path as the keys, and the arbitrary payloads
+	//as the values
+	//THIS FUNCTION WILL BE USED PRIMARILY FOR GUARD. PATHS are just an abstraction for GUARD schema to use for validating
+	//input to a function. The way that paths is constructed is the way guard is evaluated
     paths(tree, path=[], _paths=[], pk=['payload']){
         var rKeys=[]
         Object.keys(tree).forEach((key)=>{
@@ -29,6 +33,7 @@ export class Trees{
         return _paths
     }    
     
+	//validates that the path exists in the tree
     validate(tree, path, n=0, invalid=[false]){
         if((!tree)||!path||n<0||!invalid.length){
             invalid[0]=true
@@ -65,27 +70,5 @@ export class Trees{
         return !invalid[0]
     }
     
-    DivSetBaseTree(strOrArr, n, tree={}){
-        if(strOrArr.length==n){
-            tree[strOrArr.slice(0, n)]=strOrArr.slice(0, n)
-            return
-        }else if(strOrArr.length==n-1){
-            tree[strOrArr.slice(0, n-1)]=strOrArr.slice(0, n-1)
-            return
-        }else if(strOrArr.length==2){
-            tree[strOrArr.slice(0, 2)]=strOrArr.slice(0, 2)
-        }else if(strOrArr.length==1){
-            tree[strOrArr[0]]=strOrArr[0]
-            return
-        }else if(strOrArr.length==0){
-            return
-        }else{
-            const _n = Math.ceil(strOrArr.length / n); 
-            for(var i =0; i<strOrArr.length; i+=_n){
-                this.DivSetBaseTree(strOrArr.slice(i, _n*(i+1)),n, tree)
-            }  
-            return tree
-        }
-        
-    }
+    
 }
