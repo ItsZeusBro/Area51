@@ -3,7 +3,6 @@ import * as assert from "node:assert"
 
 export class TreeTests{
     constructor(tree){
-        
         this._paths(tree)
     }
 

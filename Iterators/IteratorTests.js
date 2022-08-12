@@ -1,14 +1,14 @@
-import { Recursion } from "../Recursion.js";
+import {Iterators} from './Iterators.js'
+import { ioTests } from './ioTests.js'
 import * as assert from "node:assert"
 
 export class IteratorTests{
-    constructor(setStr, n){
-        this._sliceRoll(setStr)
-        this._sliceWrap(setStr)
-        //this._sliceRollN(setStr, n)
+    constructor(setStr){
+        this._sliceRollTests(setStr)
+        this._sliceWrapTests(setStr)
     }
 
-    _sliceRoll(set){
+    _sliceRollTests(set){
         for(var i=0; i<set.length; i++){
             for(var j=i; j<set.length; j++){
                 var defined = this.sliceRoll(set, i, j)
@@ -18,7 +18,7 @@ export class IteratorTests{
             }
         }
     }
-    _sliceWrap(set){
+    _sliceWrapTests(set){
         for(var i=0; i<=set.length; i++){
             for(var j=i; j<=set.length; j++){
                 var defined = this.sliceWrap(set, i, j)
@@ -34,8 +34,8 @@ export class IteratorTests{
         if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
             return
         }
-        var recursion = new Recursion()
-        var result = recursion.iterJSlice(set, i, j)
+        var iterators = new Iterators()
+        var result = iterators.iterJSlice(set, i, j)
         //this.sliceRollValidate(result, i, j, set)
         
         return result
@@ -46,8 +46,8 @@ export class IteratorTests{
         if((!set)||(!(i>=0))||(!(j>=1))||(j<=i)){
             return
         }
-        var recursion = new Recursion()
-        var result = recursion.reverseIterJSlice(set, i, j)
+        var iterators = new Iterators()
+        var result = iterators.reverseIterJSlice(set, i, j)
     
         this.sliceWrapValidate(result, i, j, set)
     

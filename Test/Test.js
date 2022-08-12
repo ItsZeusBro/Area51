@@ -1,7 +1,7 @@
-import { ioTests } from "./ioTests.js"
+import { ioTests } from "../Iterators/ioTests.js"
 import { IteratorTests } from "../Iterators/IteratorTests.js"
 import { TreeTests } from "../Trees/TreeTests.js";
-import { ComparatorTests } from '..Comparators/ComparatorTests'
+import { ComparatorTests } from '../Comparators/ComparatorTests.js'
 import * as assert from "node:assert"
 import * as util from "node:util"
 
@@ -111,7 +111,7 @@ class Test{
 
     tests(setArr, setStr, tree){
         new ioTests(setArr, setStr, 5)
-        new IteratorTests(setStr, 100)
+        new IteratorTests(setStr)
         new TreeTests(tree)
 		new ComparatorTests()
     }

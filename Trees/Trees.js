@@ -1,6 +1,6 @@
-class Trees{
+export class Trees{
     constructor(){
-        
+
     }
     //this needs a recursive key pattern and a payload key pattern
     paths(tree, path=[], _paths=[], pk=['payload']){
