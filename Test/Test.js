@@ -108,10 +108,10 @@ class Test{
     }
 
     tests(setArr, setStr, tree){
-        //new ioTests(setArr, setStr, 5)
-        //new IteratorTests(setStr)
+        new ioTests(setArr, setStr, 5)
+        new IteratorTests(setStr)
         new TreeTests(tree)
-		//new ComparatorTests()
+		new ComparatorTests()
     }
 
     log(obj){

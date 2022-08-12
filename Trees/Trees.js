@@ -7,6 +7,7 @@ export class Trees{
 	//as the values
 	//THIS FUNCTION WILL BE USED PRIMARILY FOR GUARD. PATHS are just an abstraction for GUARD schema to use for validating
 	//input to a function. The way that paths is constructed is the way guard is evaluated
+	//EVERYTHING THAT IS NOT A PAYLOAD KEY IS TREATED AS A RECURSIVE PATH
     paths(tree, path=[], _paths=[], pk=['payload']){
         var rKeys=[]
         Object.keys(tree).forEach((key)=>{
