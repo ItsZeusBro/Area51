@@ -1,9 +1,7 @@
-import { Recursion } from "../Recursion.js";
 import { ioTests } from "./ioTests.js"
-import { sliceWrapTests } from "./sliceWrapTests.js";
-import { sliceRollTests } from "./sliceRollTests.js"
-import { treeTests } from "./treeTests.js";
-import { ComparatorTests } from './ComparatorTests.js'
+import { IteratorTests } from "../Iterators/IteratorTests.js"
+import { TreeTests } from "../Trees/TreeTests.js";
+import { ComparatorTests } from '..Comparators/ComparatorTests'
 import * as assert from "node:assert"
 import * as util from "node:util"
 
@@ -113,9 +111,8 @@ class Test{
 
     tests(setArr, setStr, tree){
         new ioTests(setArr, setStr, 5)
-        new sliceRollTests(setStr, 100)
-        new sliceWrapTests(setStr, 100)
-        new treeTests(tree)
+        new IteratorTests(setStr, 100)
+        new TreeTests(tree)
 		new ComparatorTests()
     }
 

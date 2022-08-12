@@ -1,8 +1,9 @@
-import { Recursion } from "../Recursion.js";
+import { Trees } from "./Trees.js";
 import * as assert from "node:assert"
 
-export class treeTests{
+export class TreeTests{
     constructor(tree){
+        
         this._paths(tree)
     }
 
@@ -11,15 +12,15 @@ export class treeTests{
     }
 
     paths(tree){
-        var recursion = new Recursion()
-        var arr=recursion.paths(tree)
+        var trees = new Trees()
+        var arr=trees.paths(tree)
         return arr
     }
 
     _validate(paths, tree){
-        var recursion = new Recursion()
+        var trees = new Trees()
         for(var i = 0; i<paths.length; i++){
-            assert.equal(recursion.validate(tree, paths[i]), true)
+            assert.equal(trees.validate(tree, paths[i]), true)
         }
     }
 }
