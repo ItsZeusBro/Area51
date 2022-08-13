@@ -18,10 +18,12 @@ export class Schema{
 			}
 			//use build step add payload to path, add to _paths, and return
 			if(payload.length){
-				return _paths.push(path.push(this.build_step('payload', payload)))
+				path.push(this.build_step('payload', payload))
 			}
 			return _paths
 		}else if(typeof tree ==='object'){
+			var payload=[]
+
 			for(var i = 0; i<Object.keys(tree); i++){
 				var key = Object.keys(tree)[i]
 
@@ -32,13 +34,14 @@ export class Schema{
 					path.push(this.build_step(key, this.get_payload(tree, pk)))
 					//recursively call this.paths
 					this.paths(tree[key], path, _paths, pk, rk)
-				}else if(rk.includes(key)){
-					//its a base case or its payload, add to path, then to paths
-					return _paths.push(path.push(this.build_step(key, tree[key])))
-				}else{
-
+				}else if(pk.includes(key)){
+					payload.push(this.build_step(key, tree[key]))
 				}
 			}
+			if(payload.length){
+				path.push(this.build_step('payload', payload))
+			}
+			return _paths
 		}else{
 			return _paths.push(path.push(this.build_step('payload', tree)))
 		}
