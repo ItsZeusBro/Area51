@@ -65,6 +65,9 @@ export class Schema{
 	}
 	is_recursive(obj, key, pk){
 		//something is recursive if the key is not in pk and if it is associated with a value that is an object or array
+		if(!pk.includes(key)&&(Array.isArray(obj[key]||typeof obj[key] === 'object'))){
+			return true
+		}
 	}
     
 }
