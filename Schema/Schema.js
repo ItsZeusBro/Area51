@@ -11,11 +11,11 @@ export class Schema{
 			var payload=[]
 			for(var i = 0; i<tree.length; i++){
 				if(Array.isArray(tree[i])){
-				//if its an array, pass it down
-
+					//if its an array, pass it down
+					this.paths(tree[i], path, _paths, pk, rk)
 				}else if(typeof tree[i]==='object'){
-				//if its an object, pass it down
-
+					//if its an object, pass it down
+					this.paths(tree[i], path, _paths, pk, rk)
 				}else{
 					payload.push(tree[i])
 				}
@@ -26,8 +26,13 @@ export class Schema{
 		}else if(typeof tree ==='object'){
 			//if its a recursive key, add it to rk
 			for(var i = 0; i<Object.keys(tree); i++){
+				var key = Object.keys(tree)[i]
 				if(this.is_recursive(tree, key)){
-
+					path.push(this.build_step(key, this.get_payload(tree, pk)))
+					if(!rk.includes(key)){
+						rk.push(key)
+					}
+					this.paths(tree[key], path, _paths, pk, rk)
 				}else if(this.is_base(tree, key)){
 
 				}else if(this.is_payload(tree, key)){
@@ -35,7 +40,7 @@ export class Schema{
 				}
 			}
 		}else{
-
+			return _paths.push(path.push(this.build_step('payload', tree)))
 		}
     }    
 	
