@@ -4,47 +4,13 @@ export class Schema{
     }
 	//payload is key-wise or value-based payload, so if its recursable, its identified by payload key, if its not, its identified as raw values
     paths(tree, path, _paths=[], pk=['payload'], rk=[]){
-		path=path.slice()
-		if(Array.isArray(tree)){
-			var payload=[]
-			for(var i = 0; i<tree.length; i++){
-				if(Array.isArray(tree[i]) || typeof tree[i]==='object'){
-					//if its an array or object, pass it down
-					this.paths(tree[i], path, _paths, pk, rk)
-				}else{
-					//its a raw value, push to payload
-					payload.push(tree[i])
-				}
-			}
-			//use build step add payload to path, add to _paths, and return
-			if(payload.length){
-				path.push(this.build_step('payload', payload))
-			}
-			return _paths
-		}else if(typeof tree ==='object'){
-			var payload=[]
+		//if its an array
+			//step is a payload step (which is just payload as a key and payload)
+			//if it
+		//if its an object
+			//step includes	a key and payload
+			//if it does not have a recursive key, its a base case
 
-			for(var i = 0; i<Object.keys(tree); i++){
-				var key = Object.keys(tree)[i]
-
-				if(this.is_recursive(tree, key, pk)){
-					//add recursive key if not included
-					if(!rk.includes(key)){rk.push(key)}
-					//add recursive step to path
-					path.push(this.build_step(key, this.get_payload(tree, pk)))
-					//recursively call this.paths
-					this.paths(tree[key], path, _paths, pk, rk)
-				}else if(pk.includes(key)){
-					payload.push(this.build_step(key, tree[key]))
-				}
-			}
-			if(payload.length){
-				path.push(this.build_step('payload', payload))
-			}
-			return _paths
-		}else{
-			return _paths.push(path.push(this.build_step('payload', tree)))
-		}
     }    
 	
 	build_step(key, payload){
@@ -75,26 +41,122 @@ export class Schema{
     
 }
 
-
+const SCHEMA=
+[
+  {
+    'isEncArr': [
+      {
+	'isEnc': [
+	  {
+	    'isArr': [
+	      { '~DEFAULT~': 'utf8', 'isEnc': 'wackyFunction1' }
+	    ]
+	  }
+	]
+      },
+      {
+	'isStrArr': [
+	  {
+	    '~DEFAULT~': [ 'utf8' ],
+	    'isEncArr': [
+	      {
+		'~DEFAULT~': 'Wm',
+		'isStr': 'wackyFunction2'
+	      },
+	      {
+		'~DEFAULT~': [ { '6K': { 'hDz': undefined } }, undefined ],
+		'isObjArr': 'wackyFunction3'
+	      }
+	    ]
+	  },
+	  {
+	    'isStrArr': [
+	      {
+		'~DEFAULT~': [
+		  { 'hLM': undefined },
+		  { 'HMi': { 'FpT': undefined } },
+		  undefined
+		],
+		'isObjArr': 'wackyFunction4'
+	      },
+	      {
+		'~DEFAULT~': [ 'utf8' ],
+		'isEncArr': 'wackyFunction5'
+	      }
+	    ]
+	  }
+	]
+      },
+      {
+	'~DEFAULT~': { 'G': { S5: { 'i': undefined } } },
+	'isObj': [
+	  {
+	    'isEnc': [ { 'isArr': 'wackyFunction6' } ]
+	  }
+	]
+      }
+    ]
+  },
+  {
+    'isStr': [
+      {
+	'~DEFAULT~': [],
+	'isIntArr': [
+	  {
+	    'isArr': [
+	      {
+		'~DEFAULT~': [ 0, 2, 3 ],
+		'isIntArr': 'wackyFunction7'
+	      }
+	    ]
+	  }
+	]
+      }
+    ]
+  },
+  {
+    '~DEFAULT~': [],
+    'isArr': [
+      {
+	'~DEFAULT~': [
+	  { 'c': undefined },
+	  { 'iDI': { 'o': { 'y': undefined } } }
+	],
+	'isObjArr': [
+	  {
+	    '~DEFAULT~': [ 2 ],
+	    'isIntArr': [
+	      {
+		'isStrArr': 'wackyFunction8'
+	      },
+	      {
+		'~DEFAULT~': { 'p0': undefined },
+		'isObj': 'wackyFunction9'
+	      }
+	    ]
+	  },
+	  {
+	    'isIntArr': [ { '~DEFAULT~': 2, 'isInt': 'wackyFunction10' } ]
+	  }
+	]
+      },
+      {
+	'isStr': [
+	  {
+	    '~DEFAULT~': '',
+	    'isStr': [
+	      {
+		'~DEFAULT~': [ 'Uvo', 'evH' ],
+		'isStrArr': 'wackyFunction11'
+	      }
+	    ]
+	  }
+	]
+      }
+    ]
+  },
+  1
+]
   
 var schema = new Schema()
-var schemaTree = {
-	'key1':{
-		'key2':{
-
-		},
-		'payload1':{
-			'more':'payload1'
-		},
-		'payload2':{
-			'more':'payload2'
-		}
-	},
-	'payload1':{
-		'some':'payload1'
-	},
-	'payload2':{
-		'some':'payload2'
-	}
-}
-console.log(schema.build_step('key1', schema.get_payload(schemaTree, ['payload1', 'payload2'])))
+console.log(schema.paths(SCHEMA, [], [], ['~DEFAULT~']))
