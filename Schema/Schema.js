@@ -2,35 +2,43 @@ export class Schema{
     constructor(){
 
     }
-
-    paths(tree, _paths=[], pk=['payload']){
+	//payload is key-wise or value-based payload, so if its recursable, its identified by payload key, if its not, its identified as raw values
+    paths(tree, path, _paths=[], pk=['payload'], rk=[]){
+		path=path.slice()
 		if(Array.isArray(tree)){
-			for(var i = 0; i<tree.length; i++){
-				//every element in the array could be an object, array, or a terminating value
-			}
-		}else if(typeof tree === 'object'){
-			for(var i = 0; i<Object.keys(tree).length; i++){
-				//every element always has a key
-				var key = Object.keys(tree)[i]
-				var val = tree[key]
 
-				console.log(this.build_step(key, this.get_payload(tree, pk)))
-			}
+		}else if(typeof tree ==='object'){
+			//if its a recursive key, add it to rk
 		}else{
-			//every element is a raw value (base case)
+
 		}
     }    
-
+	
 	build_step(key, payload){
 		return {[key]:payload}
 	}
 
+
 	get_payload(obj, pk){
-		var payload={};
-		for(var i=0; i<pk.length; i++){
-			if(obj[pk[i]]){ payload[pk[i]]=obj[pk[i]]; }
+		var payload;
+		if(Array.isArray(obj)){
+			payload=[]
+			//if the object in the array is not a base case and not recursive its payload
+			
+		}else if(typeof obj === 'object'){
+			payload = {}
+			for(var i=0; i<pk.length; i++){
+				if(obj[pk[i]]){ payload[pk[i]]=obj[pk[i]]; }
+			}
 		}
-		return payload;
+		return payload
+	}
+	is_recursive(obj, pk){
+
+	}
+	is_base(obj, pk){
+		//if object has a key not in pk and rk then its a base case key
+		if()
 	}
     
 }
