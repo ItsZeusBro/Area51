@@ -6,9 +6,34 @@ export class Schema{
     paths(tree, path, _paths=[], pk=['payload'], rk=[]){
 		path=path.slice()
 		if(Array.isArray(tree)){
+			//if its an object it is passed down a level
+			//if its a raw type it is payload, and we add a payload step with general 'payload' key associated with a payload array
+			var payload=[]
+			for(var i = 0; i<tree.length; i++){
+				if(Array.isArray(tree[i])){
+				//if its an array, pass it down
+
+				}else if(typeof tree[i]==='object'){
+				//if its an object, pass it down
+
+				}else{
+					payload.push(tree[i])
+				}
+			}
+			//use build step add to path, add to _paths, and return
+			return _paths.push(path.push(this.build_step('payload', payload)))
 
 		}else if(typeof tree ==='object'){
 			//if its a recursive key, add it to rk
+			for(var i = 0; i<Object.keys(tree); i++){
+				if(this.is_recursive(tree, key)){
+
+				}else if(this.is_base(tree, key)){
+
+				}else if(this.is_payload(tree, key)){
+
+				}
+			}
 		}else{
 
 		}
