@@ -1,4 +1,4 @@
-import { Trees } from "./Trees.js";
+import { Trees } from "./Trees.js.js";
 import * as assert from "node:assert"
 import * as util from "node:util"
 
