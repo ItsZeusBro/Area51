@@ -1,3 +1,5 @@
+import * as util from "node:util"
+
 export class Schema{
     constructor(){
 
@@ -31,7 +33,8 @@ export class Schema{
 			}
 
 		}else{
-			path.push({[tree]:payload})
+			var [payload, schema]=this.separate(tree, pk)
+			path.push({[schema]:payload})
 			_paths.push(path)
 			return _paths
 		}
@@ -67,8 +70,16 @@ export class Schema{
 				}
 			}
 			return [payload, schema]
+		}else{
+			//there is no difference between payload and schema, so its a base case
+			return [undefined, obj]
 		}
 	}
+	log(obj){
+        if(obj){
+            console.log(util.inspect(obj, false, null, true))
+        }
+    }
 }
 
 const SCHEMA=[
@@ -188,4 +199,4 @@ const SCHEMA=[
 ]
   
 var schema = new Schema()
-console.log(schema.paths(SCHEMA, ['~DEFAULT~']))
+schema.log(schema.paths(SCHEMA, ['~DEFAULT~']))
