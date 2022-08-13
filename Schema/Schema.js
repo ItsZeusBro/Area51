@@ -197,6 +197,71 @@ const SCHEMA=[
 	},
   1
 ]
+
+var SCHEMA2={
+	'one':[
+		1, 
+		2, 
+		3, 
+		{
+			'oneNHalf':'sdlfkjdsflkj'
+		},
+		[
+			'dlfkjsdf',
+			2,
+			3, 
+			4, 
+			5
+		],
+		{
+			'~DEFAULT~':{}
+		},
+		{
+			'payload':{}
+		}
+	],
+
+	'two':{
+		'three':[
+			{
+				'four':[
+					[
+						{
+							'five':{
+								'six':"ldkjfsdfolkj",
+								'seven':123123412,
+								'eight':{
+									'nine':"osidjfodsifj"
+								}
+							}
+						}
+					],
+					[
+						[
+							1, 2, 3, 4, 5
+						],
+						[
+							1, 2, 3, 4, 5
+						]
+					],
+					[
+						'lskdfjsdifk',
+						{
+							'ten':'ksldjfsdlfkj'
+						},
+						{
+							'eleven':'lsdkfjdslkfjdsg'
+						}
+					]
+				]
+			}
+		],
+
+		'~DEFAULT~':{},
+		'payload':{}
+		
+	}
+}
   
 var schema = new Schema()
-schema.log(schema.paths(SCHEMA, ['~DEFAULT~']))
+schema.log(schema.paths(SCHEMA2, ['~DEFAULT~', 'payload']))
