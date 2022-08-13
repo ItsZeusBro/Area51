@@ -4,12 +4,29 @@ export class Schema{
     }
 	//payload is key-wise or value-based payload, so if its recursable, its identified by payload key, if its not, its identified as raw values
     paths(tree, path, _paths=[], pk=['payload'], rk=[]){
-		//if its an array
-			//step is a payload step (which is just payload as a key and payload)
-			//if it
-		//if its an object
-			//step includes	a key and payload
-			//if it does not have a recursive key, its a base case
+		if(Array.isArray(tree)){
+			//collect payload (if it exists), add it to path with a general payload key
+			var [payload, schema]=this.separate(obj, pk, rk)
+			//check if base case
+			if(schema.length){
+				//it recursive
+			}else{
+				//its base case
+			}
+
+		}else if(typeof tree === 'object'){
+			//collect all payload in pk's (if it exists), add it to path with a general payload key
+			var [payload, schema]=this.separate(obj, pk, rk)
+			//base case here is defined if the object does not contain recursable values associated with non-payload keys
+			if(Object.keys(schema).length){
+				//its recursive
+			}else{
+				//its a base case
+			}
+
+		}else{
+			throw Error("schema invalid")
+		}
 
     }    
 	
@@ -18,19 +35,37 @@ export class Schema{
 	}
 
 
-	get_payload(obj, pk){
-		var payload;
+	separate(obj, pk){
+		//separate payload from recursable values
 		if(Array.isArray(obj)){
-			payload=[]
-			//if the object in the array is not a base case and not recursive its payload
-			
-		}else if(typeof obj === 'object'){
-			payload = {}
-			for(var i=0; i<pk.length; i++){
-				if(obj[pk[i]]){ payload[pk[i]]=obj[pk[i]]; }
+			var payload=[];
+			var schema = [];
+			for(var i =0; i<obj.length; i++){
+				//if its an array or object value then its apart of schema
+				//else its a part of payload
+				if(Array.isArray(obj[i]) || typeof obj[i]==='object'){
+					schema.push(obj[key])
+				}else{
+					payload.push(obj[key])
+				}
 			}
+
+			return [payload, schema]
+
+		}else if(typeof obj==='object'){
+			var payload={};
+			var schema ={};
+			for(var i=0; i<Object.keys(obj); i++){
+				var key=Object.keys(obj)[i]
+				if(pk.includes(key)){
+					payload[key]=obj[key]
+				}else{
+					schema[key]=obj[key]
+				}
+			}
+
+			return [payload, schema]
 		}
-		return payload
 	}
 	is_recursive(obj, key, pk){
 		//something is recursive if the key is not in pk and if it is associated with a value that is an object or array
