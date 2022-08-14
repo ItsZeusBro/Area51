@@ -1,7 +1,7 @@
 import { ioTests } from "../Iterators/ioTests.js"
 import { IteratorTests } from "../Iterators/IteratorTests.js"
 import { TreeTests } from "../Trees/TreeTests.js";
-import { ComparatorTests } from '../Comparators/ComparatorTests.js'
+import {Test} from "test/Test.js"
 import * as assert from "node:assert"
 import * as util from "node:util"
 
