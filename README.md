@@ -1,4 +1,4 @@
 # Recursion
 
 
-A general toolset for recursive behavior
+A place where everything that is done, is done... recursively
