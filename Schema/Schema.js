@@ -2,11 +2,11 @@ import { pbkdf2 } from "node:crypto";
 import * as util from "node:util"
 
 export class Schema{
-	paths(schema, pk=['payload'], path, _paths=[]){
+	paths(schema, pk=['payload'], path=[], _paths=[]){
 		//payload is either defined by a key if its an object, or it is defined as something that is not an array
 		//or not an object (inside of an array)
 		//each recursive call is a divergence in the path structure 
-		schema = schema.slice()
+		path = path.slice()
 		//at each recursive level and iteration we need to create a step object and push it to path
 		//each path ends at a base case, and a new subpath is created at each recursive call
 		if(Array.isArray(schema)){
