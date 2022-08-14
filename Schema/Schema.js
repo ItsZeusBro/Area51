@@ -36,7 +36,6 @@ export class Schema{
 				var key = Object.keys(schema)[i];
 				var val = schema[key]
 				if(pk.includes(key)){
-					console.log(key)
 					//create a payload object with key value and push to path. Dont recursively call
 					path.push({[key]:val})
 				}else{
@@ -251,4 +250,4 @@ var SCHEMA2={
 }
   
 var schema = new Schema()
-schema.log(schema.paths(SCHEMA2, ['~DEFAULT~', 'payload']))
+schema.log(schema.paths(SCHEMA, ['~DEFAULT~', 'payload']))
