@@ -2,11 +2,10 @@ import { pbkdf2 } from "node:crypto";
 import * as util from "node:util"
 
 export class Schema{
-	paths(schema, pk=['payload'], path=[], _paths=[]){
+	paths(schema, pk, path=[], _paths=[]){
 		//payload is either defined by a key if its an object, or it is defined as something that is not an array
 		//or not an object (inside of an array)
 		//each recursive call is a divergence in the path structure 
-		path = path.slice()
 		//at each recursive level and iteration we need to create a step object and push it to path
 		//each path ends at a base case, and a new subpath is created at each recursive call
 		if(Array.isArray(schema)){
@@ -16,14 +15,17 @@ export class Schema{
 				var val=schema[i];
 				if(Array.isArray(val)){
 					//push index to path
-					path.push(i)
-					this.paths(val, pk, path, _paths)
+					var _path = path.slice()
+					_path.push(i)
+					this.paths(val, pk, _path, _paths)
 				}else if(typeof val === 'object'){
 					//push index to path
-					path.push(i)
-					this.paths(val, pk, path, _paths)
+					var _path = path.slice()
+					_path.push(i)
+					this.paths(val, pk, _path, _paths)
 				}else{
 					//payload case, dont recursively call
+					path = path.slice()
 					path.push({[i]:val})
 				}
 			}
@@ -32,18 +34,21 @@ export class Schema{
 				var key = Object.keys(schema)[i];
 				var val = schema[key]
 				if(pk.includes(key)){
+					console.log(key)
 					//create a payload object with key value and push to path. Dont recursively call
 					path.push({[key]:val})
 				}else{
 					//push the key to path
-					path.push(key)
-					this.paths(val, pk, path, _paths)
+					var _path = path.slice()
+					_path.push(key)
+					this.paths(val, pk, _path, _paths)
 				}
 			}
 		}else{
 			//base case 1 raw value or no value
-			path.push({"base":schema})
-			_paths.push(path)
+			var _path = path.slice()
+			_path.push({"base":schema})
+			_paths.push(_path)
 		}
 		return _paths
 	}
