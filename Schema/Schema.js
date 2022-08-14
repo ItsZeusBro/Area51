@@ -1,4 +1,3 @@
-import { pbkdf2 } from "node:crypto";
 import * as util from "node:util"
 
 export class Schema{
@@ -11,6 +10,8 @@ export class Schema{
 		if(Array.isArray(schema)){
 			//if its an array, there is payload, but no key so each payload has its own step at the index
 				//{indexKey:payload}
+			var q=[]
+
 			for(var i=0; i<schema.length; i++){
 				var val=schema[i];
 				if(Array.isArray(val)){
@@ -29,6 +30,7 @@ export class Schema{
 					path.push({[i]:val})
 				}
 			}
+
 		}else if(typeof schema === 'object'){
 			for(var i=0; i<Object.keys(schema).length; i++){
 				var key = Object.keys(schema)[i];
@@ -46,9 +48,10 @@ export class Schema{
 			}
 		}else{
 			//base case 1 raw value or no value
-			var _path = path.slice()
-			_path.push({"base":schema})
-			_paths.push(_path)
+
+			path.push({"base":schema})
+			_paths.push(path)
+			return
 		}
 		return _paths
 	}
@@ -248,4 +251,4 @@ var SCHEMA2={
 }
   
 var schema = new Schema()
-schema.log(schema.paths(SCHEMA, ['~DEFAULT~', 'payload']))
+schema.log(schema.paths(SCHEMA2, ['~DEFAULT~', 'payload']))
