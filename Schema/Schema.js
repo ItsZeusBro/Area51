@@ -1,16 +1,51 @@
+import { pbkdf2 } from "node:crypto";
 import * as util from "node:util"
 
 export class Schema{
-	paths(){
+	paths(schema, pk=['payload'], path, _paths=[]){
 		//payload is either defined by a key if its an object, or it is defined as something that is not an array
 		//or not an object (inside of an array)
-		//base case 1 raw value
-		//recursive case 1 array
+		//each recursive call is a divergence in the path structure 
+		schema = schema.slice()
+		//at each recursive level and iteration we need to create a step object and push it to path
+		//each path ends at a base case, and a new subpath is created at each recursive call
+		if(Array.isArray(schema)){
 			//if its an array, there is payload, but no key so each payload has its own step at the index
-			//{indexKey:payload}
-		//recursive case 2 object 
-			//{key:payload at level of the key}
-		
+				//{indexKey:payload}
+			for(var i=0; i<schema.length; i++){
+				var val=schema[i];
+				if(Array.isArray(val)){
+					//push index to path
+					path.push(i)
+					this.paths(val, pk, path, _paths)
+				}else if(typeof val === 'object'){
+					//push index to path
+					path.push(i)
+					this.paths(val, pk, path, _paths)
+				}else{
+					//payload case, dont recursively call
+					path.push({[i]:val})
+				}
+			}
+		}else if(typeof schema === 'object'){
+			for(var i=0; i<Object.keys(schema).length; i++){
+				var key = Object.keys(schema)[i];
+				var val = schema[key]
+				if(pk.includes(key)){
+					//create a payload object with key value and push to path. Dont recursively call
+					path.push({[key]:val})
+				}else{
+					//push the key to path
+					path.push(key)
+					this.paths(val, pk, path, _paths)
+				}
+			}
+		}else{
+			//base case 1 raw value or no value
+			path.push({"base":schema})
+			_paths.push(path)
+		}
+		return _paths
 	}
 
 	
@@ -208,4 +243,4 @@ var SCHEMA2={
 }
   
 var schema = new Schema()
-schema.log(schema.paths(SCHEMA2, ['~DEFAULT~', 'payload']))
+schema.log(schema.paths(SCHEMA, ['~DEFAULT~', 'payload']))
